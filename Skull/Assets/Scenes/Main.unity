@@ -899,6 +899,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfaed9551e3fad4b8ad24087379d446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 100
+  attack: {fileID: 0}
+  skill: {fileID: 0}
+  attackDelay: 0
+  skillDelay: 0
   moveSpeed: 3
   jumpPower: 9
 --- !u!58 &523888621
@@ -5112,6 +5117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpKey: 32
   interactionKey: 101
+  attackKey: 113
+  skillKey: 0
 --- !u!114 &1402184159
 MonoBehaviour:
   m_ObjectHideFlags: 0
