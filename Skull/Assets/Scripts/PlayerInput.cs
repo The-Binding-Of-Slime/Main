@@ -6,8 +6,6 @@ public class PlayerInput : MonoBehaviour
 {
     public KeyCode jumpKey;
     public KeyCode interactionKey;
-    public KeyCode attackKey;
-    public KeyCode skillKey;
     public float Hor { get; private set; }
     public float Ver { get; private set; }
     public bool GetHorDown { get; private set; }
@@ -15,8 +13,6 @@ public class PlayerInput : MonoBehaviour
     public bool GetJumpDown { get; private set; }
     public bool GetInteractionDown { get; private set; }
     public bool GetInteractionStay { get; private set; }
-    public bool GetAttackKeyStay { get; private set; }
-    public bool GetSkillKeyStay { get; private set; }
     void Start()
     {
         
@@ -32,7 +28,5 @@ public class PlayerInput : MonoBehaviour
         GetJumpDown = Input.GetKeyDown(jumpKey);
         GetInteractionDown = Input.GetKeyDown(interactionKey);
         GetInteractionStay = Input.GetKey(interactionKey);
-        GetAttackKeyStay = Input.GetKey(attackKey);
-        GetSkillKeyStay = Input.GetKey(skillKey);
     }
 }

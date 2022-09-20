@@ -9,6 +9,25 @@ public class WallUp : Trigger
     public bool colliderControll;
     Vector2 originVector;
     Vector2 movedVector;
+    float sibal;
+    float positionValue
+    {
+        get { return sibal; }
+        set {
+            if(value > 2f)
+            {
+                sibal = 2f;
+            }
+            else if(value <= 0f)
+            {
+                sibal = 0f;
+            }
+            else
+            {
+                sibal = value;
+            }
+        }
+    }
     protected override void Start()
     {
         base.Start();
@@ -28,6 +47,7 @@ public class WallUp : Trigger
     protected override void Update()
     {
         base.Update();
+        
     }
 
     protected override void FixedUpdate()
@@ -35,13 +55,15 @@ public class WallUp : Trigger
         base.FixedUpdate();
         if (!IsActive)
         {
-            transform.position = Vector2.Lerp(transform.position, movedVector,speed);
+            //transform.position = Vector2.Lerp(transform.position, movedVector,speed);
+            positionValue -= speed * Time.deltaTime;
         }
         else
         {
-            transform.position = Vector2.Lerp(transform.position, originVector, speed);
+            //transform.position = Vector2.Lerp(transform.position, originVector, speed);
+            positionValue += speed * Time.deltaTime;
         }
-        
+        transform.position = movedVector * positionValue + originVector * (1f - positionValue);
     }
 
     public override void input(bool val)

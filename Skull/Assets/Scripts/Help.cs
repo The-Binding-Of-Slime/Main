@@ -6,10 +6,11 @@ using UnityEngine;
 public class Help : MonoBehaviour
 {
     GameManager gameManager;
+    [TextArea]
     public string HelpText;
     void start()
     {
-
+        //HelpText = HelpText.Replace("\\n", "\n");
     }
 
     private void OnEnable()
