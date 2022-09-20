@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline;
 using UnityEngine;
 
-public class PlayerControll : MonoBehaviour
+public class PlayerControll : Attackable
 {
     PlayerInput inputSys;
     Rigidbody2D rigid;
     Animator animator;
-    SpriteRenderer renderer;
+    SpriteRenderer render;
     public float moveSpeed;
     public float jumpPower;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         inputSys = FindObjectOfType<PlayerInput>();
         animator = GetComponent<Animator>();
-        renderer = GetComponent<SpriteRenderer>();
+        render = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -23,34 +25,25 @@ public class PlayerControll : MonoBehaviour
     {
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position + Vector3.down * 0.9f, Vector2.down, 0.4f);
-        bool ishit = hit.collider != null && !hit.collider.isTrigger;
-        if(ishit && inputSys.GetJumpDown)
+        bool isGroundHit = hit.collider != null && !hit.collider.isTrigger;
+        if(isGroundHit && inputSys.GetJumpDown)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, jumpPower);
             animator.SetBool("isJump", true);
         }
 
-        if (ishit && !animator.GetBool("isGround"))
+        if (isGroundHit && !animator.GetBool("isGround"))
         {
             animator.SetBool("isJump", false);
         }
 
-        if (ishit)
+        if (isGroundHit)
         {
             animator.SetBool("isGround", true);
         }
         else
         {
             animator.SetBool("isGround", false);
-        }
-
-        if (inputSys.Hor > 0f)
-        {
-            renderer.flipX = false;
-        }
-        else if(inputSys.Hor < 0f)
-        {
-            renderer.flipX = true;
         }
 
         if(!inputSys.GetHorDown)
@@ -61,6 +54,15 @@ public class PlayerControll : MonoBehaviour
         {
             animator.SetBool("isRun", true);
         }
+
+        if (inputSys.Hor > 0f)
+        {
+            render.flipX = false;
+        }
+        else if (inputSys.Hor < 0f)
+        {
+            render.flipX = true;
+        }
     }
 
     private void FixedUpdate()
@@ -69,6 +71,8 @@ public class PlayerControll : MonoBehaviour
         {
             rigid.AddForce(new Vector2(inputSys.Hor, 0f) * moveSpeed * 30);
         }
+
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
