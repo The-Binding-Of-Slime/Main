@@ -1,23 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline;
 using UnityEngine;
 
-public class PlayerControll : Attackable
+public class PlayerControll : MonoBehaviour
 {
     PlayerInput inputSys;
     Rigidbody2D rigid;
     Animator animator;
-    SpriteRenderer render;
+    SpriteRenderer renderer;
     public float moveSpeed;
     public float jumpPower;
-
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         inputSys = FindObjectOfType<PlayerInput>();
         animator = GetComponent<Animator>();
-        render = GetComponent<SpriteRenderer>();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -25,25 +23,34 @@ public class PlayerControll : Attackable
     {
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position + Vector3.down * 0.9f, Vector2.down, 0.4f);
-        bool isGroundHit = hit.collider != null && !hit.collider.isTrigger;
-        if(isGroundHit && inputSys.GetJumpDown)
+        bool ishit = hit.collider != null && !hit.collider.isTrigger;
+        if(ishit && inputSys.GetJumpDown)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, jumpPower);
             animator.SetBool("isJump", true);
         }
 
-        if (isGroundHit && !animator.GetBool("isGround"))
+        if (ishit && !animator.GetBool("isGround"))
         {
             animator.SetBool("isJump", false);
         }
 
-        if (isGroundHit)
+        if (ishit)
         {
             animator.SetBool("isGround", true);
         }
         else
         {
             animator.SetBool("isGround", false);
+        }
+
+        if (inputSys.Hor > 0f)
+        {
+            renderer.flipX = false;
+        }
+        else if(inputSys.Hor < 0f)
+        {
+            renderer.flipX = true;
         }
 
         if(!inputSys.GetHorDown)
@@ -54,14 +61,9 @@ public class PlayerControll : Attackable
         {
             animator.SetBool("isRun", true);
         }
-
-        if (inputSys.Hor > 0f)
+        if (inputSys.GetInteractionDown)
         {
-            render.flipX = false;
-        }
-        else if (inputSys.Hor < 0f)
-        {
-            render.flipX = true;
+            interactionCheck();
         }
     }
 
@@ -71,11 +73,9 @@ public class PlayerControll : Attackable
         {
             rigid.AddForce(new Vector2(inputSys.Hor, 0f) * moveSpeed * 30);
         }
-
-        
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+   /* private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.GetComponentInParent<Interaction>() != null && inputSys.GetInteractionDown)
         {
@@ -90,6 +90,28 @@ public class PlayerControll : Attackable
                 inter.interaction();
             }
             //gameObject.SetActive(false);
+        }
+    }*/
+
+    void interactionCheck()
+    {
+        Collider2D[] collisions = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 1),0);
+        foreach (Collider2D collision in collisions)
+        {
+            if (collision.GetComponentInParent<Interaction>() != null)
+            {
+                Transform go = collision.transform;
+                while (go.GetComponentInParent<Interaction>() != null && go.GetComponent<Interaction>() == null)
+                {
+                    go = go.parent;
+                }
+                Interaction[] inters = go.GetComponents<Interaction>();
+                foreach (Interaction inter in inters)
+                {
+                    inter.interaction();
+                }
+                //gameObject.SetActive(false);
+            }
         }
     }
 }
