@@ -8,12 +8,19 @@ public class PlayerControll : Attackable
     Rigidbody2D rigid;
     Animator animator;
     SpriteRenderer render;
+
+    float originHp;
+    float originDamage;
+    float originMoveSpeed;
+    float originAttackDelay;
+
     public float moveSpeed;
     public float jumpPower;
-    public float statDamage;
-    public float statHp;
-    public float statSpeed;
-    public float statAttackDelay;
+    float statDamage = 1;
+    float statHp = 1;
+    float statSpeed = 1;
+    float statAttackDelay = 1;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -122,20 +129,22 @@ public class PlayerControll : Attackable
 
     public void initStat(float attack, float hp, float speed, float Delay)
     {
-        attackDamage = attack;
-        maxHp = hp;
-        moveSpeed = speed;
-        attackDelay = Delay;
+        originDamage = attack;
+        originHp = hp;
+        originMoveSpeed = speed;
+        originAttackDelay = Delay;
+        RefreshStat();
     }
 
     void RefreshStat()
     {
-        maxHp *= statHp;
-        damage *= statDamage;
-        moveSpeed *= statSpeed;
-        jumpPower *= statSpeed;
-        attackDelay *= statAttackDelay;
-        skillDelay *= statAttackDelay;
+        maxHp = originHp * statHp;
+        damage = originDamage * statDamage;
+        moveSpeed = originMoveSpeed * statSpeed;
+        jumpPower = originMoveSpeed * statSpeed * 3;
+        attackDelay = originAttackDelay * statAttackDelay;
+        skillDelay = originAttackDelay * statAttackDelay;
+        Debug.Log("HP : " + maxHp + ", Damage : " + damage + ", speed : " + moveSpeed + ", Delay : " + attackDelay);
     }
 
     public void StatUp(float hpup,float damageup,float speedup,float delayup)

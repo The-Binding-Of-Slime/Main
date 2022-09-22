@@ -328,16 +328,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfaed9551e3fad4b8ad24087379d446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 0
+  maxHp: 1
   attack: {fileID: 0}
   skill: {fileID: 0}
   attackDelay: 1
   skillDelay: 1
-  damage: 1
   attackDamage: 1
   skillDamage: 1
-  moveSpeed: 3
-  jumpPower: 9
   statDamage: 2
   statHp: 2
   statSpeed: 2

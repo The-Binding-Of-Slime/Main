@@ -9,7 +9,7 @@ public class Attackable : Hitable
     public GameObject skill;
     public float attackDelay;
     public float skillDelay;
-    public float damage;
+    protected float damage = 1;
     public float attackDamage;
     public float skillDamage;
 

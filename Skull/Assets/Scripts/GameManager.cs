@@ -57,10 +57,13 @@ public class GameManager : MonoBehaviour
         spawnPoint = GameObject.Find("Spawn Point").transform.position;
         player.transform.position = spawnPoint;
 
-        PlayerPrefs.SetFloat("PlayerHp", 1);
-        PlayerPrefs.SetFloat("PlayerDamage", 1);
-        PlayerPrefs.SetFloat("PlayerMoveSpeed", 1);
-        PlayerPrefs.SetFloat("PlayerAttackDelay", 1);
+        PlayerPrefs.SetFloat("PlayerHp", 3);
+        PlayerPrefs.SetFloat("PlayerDamage", 3);
+        PlayerPrefs.SetFloat("PlayerMoveSpeed", 3);
+        PlayerPrefs.SetFloat("PlayerAttackDelay", 3);
+
+        player.GetComponent<PlayerControll>().initStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"));
+        //player.GetComponent<PlayerControll>().StatUp(0.2f, 0.2f, 0.2f, 0.2f);
     }
 
     // Update is called once per frame
@@ -80,7 +83,7 @@ public class GameManager : MonoBehaviour
             Pause();
         }
 
-        blackCanvas.color = new Color(blackCanvas.color.r, blackCanvas.color.g, blackCanvas.color.b, blackCanvas.color.a + ((blackCanvas.color.a + blackCanvasAlpha) / 2f - blackCanvas.color.a) * Time.deltaTime * 8);
+        //blackCanvas.color = new Color(blackCanvas.color.r, blackCanvas.color.g, blackCanvas.color.b, blackCanvas.color.a + ((blackCanvas.color.a + blackCanvasAlpha) / 2f - blackCanvas.color.a) * Time.deltaTime * 8);
     }
 
     public void showHelp(string s)
