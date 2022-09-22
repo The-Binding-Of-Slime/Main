@@ -2,20 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControll : MonoBehaviour
+public class PlayerControll : Attackable
 {
     PlayerInput inputSys;
     Rigidbody2D rigid;
     Animator animator;
-    SpriteRenderer renderer;
+    SpriteRenderer render;
     public float moveSpeed;
     public float jumpPower;
+    public float statDamage;
+    public float statHp;
+    public float statSpeed;
+    public float statAttackDelay;
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         inputSys = FindObjectOfType<PlayerInput>();
         animator = GetComponent<Animator>();
-        renderer = GetComponent<SpriteRenderer>();
+        render = GetComponent<SpriteRenderer>();
+        RefreshStat();
     }
 
     // Update is called once per frame
@@ -46,11 +51,11 @@ public class PlayerControll : MonoBehaviour
 
         if (inputSys.Hor > 0f)
         {
-            renderer.flipX = false;
+            render.flipX = false;
         }
         else if(inputSys.Hor < 0f)
         {
-            renderer.flipX = true;
+            render.flipX = true;
         }
 
         if(!inputSys.GetHorDown)
@@ -113,5 +118,32 @@ public class PlayerControll : MonoBehaviour
                 //gameObject.SetActive(false);
             }
         }
+    }
+
+    public void initStat(float attack, float hp, float speed, float Delay)
+    {
+        attackDamage = attack;
+        maxHp = hp;
+        moveSpeed = speed;
+        attackDelay = Delay;
+    }
+
+    void RefreshStat()
+    {
+        maxHp *= statHp;
+        damage *= statDamage;
+        moveSpeed *= statSpeed;
+        jumpPower *= statSpeed;
+        attackDelay *= statAttackDelay;
+        skillDelay *= statAttackDelay;
+    }
+
+    public void StatUp(float hpup,float damageup,float speedup,float delayup)
+    {
+        statHp += hpup;
+        statDamage += damageup;
+        statSpeed += speedup;
+        statAttackDelay -= delayup;
+        RefreshStat();
     }
 }

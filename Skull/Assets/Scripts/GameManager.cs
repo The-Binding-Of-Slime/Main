@@ -56,6 +56,11 @@ public class GameManager : MonoBehaviour
         inputSys = GetComponent<PlayerInput>();
         spawnPoint = GameObject.Find("Spawn Point").transform.position;
         player.transform.position = spawnPoint;
+
+        PlayerPrefs.SetFloat("PlayerHp", 1);
+        PlayerPrefs.SetFloat("PlayerDamage", 1);
+        PlayerPrefs.SetFloat("PlayerMoveSpeed", 1);
+        PlayerPrefs.SetFloat("PlayerAttackDelay", 1);
     }
 
     // Update is called once per frame
@@ -134,6 +139,7 @@ public class GameManager : MonoBehaviour
 
     void Pause()
     {
+        inputSys.reset();
         inputSys.enabled = false;
         PauseMenu.SetActive(true);
     }
