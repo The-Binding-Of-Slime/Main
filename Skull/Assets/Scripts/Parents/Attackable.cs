@@ -12,6 +12,8 @@ public class Attackable : Hitable
     protected float damage = 1;
     public float attackDamage;
     public float skillDamage;
+    public float skillMana;
+    protected float mana = 0;
 
     public float attackTimer {
         get { return attackTimer; }
@@ -67,6 +69,14 @@ public class Attackable : Hitable
 
     protected void useSkill()
     {
+        if(skillMana > mana)
+        {
+            return;
+        }
+        else
+        {
+            mana -= skillMana;
+        }
         if (skillTimer == 0f)
         {
             skillTimer = skillDelay;

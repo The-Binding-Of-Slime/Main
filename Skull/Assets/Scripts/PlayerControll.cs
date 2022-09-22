@@ -1,6 +1,17 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum Stat
+{
+    hp,
+    damage,
+    moveSpeed,
+    attackDelay,
+    mana,
+    luck
+}
 
 public class PlayerControll : Attackable
 {
@@ -13,13 +24,19 @@ public class PlayerControll : Attackable
     float originDamage;
     float originMoveSpeed;
     float originAttackDelay;
+    float originMana;
+    float originLuck;
 
     public float moveSpeed;
     public float jumpPower;
+    float luck;
+
     float statDamage = 1;
     float statHp = 1;
     float statSpeed = 1;
     float statAttackDelay = 1;
+    float statMana = 1;
+    float statLuck = 1;
 
     void Start()
     {
@@ -36,7 +53,7 @@ public class PlayerControll : Attackable
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position + Vector3.down * 0.9f, Vector2.down, 0.4f);
         bool ishit = hit.collider != null && !hit.collider.isTrigger;
-        if(ishit && inputSys.GetJumpDown)
+        if (ishit && inputSys.GetJumpDown)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, jumpPower);
             animator.SetBool("isJump", true);
@@ -60,12 +77,12 @@ public class PlayerControll : Attackable
         {
             render.flipX = false;
         }
-        else if(inputSys.Hor < 0f)
+        else if (inputSys.Hor < 0f)
         {
             render.flipX = true;
         }
 
-        if(!inputSys.GetHorDown)
+        if (!inputSys.GetHorDown)
         {
             animator.SetBool("isRun", false);
         }
@@ -87,27 +104,27 @@ public class PlayerControll : Attackable
         }
     }
 
-   /* private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.GetComponentInParent<Interaction>() != null && inputSys.GetInteractionDown)
-        {
-            Transform go = collision.transform;
-            while(go.GetComponentInParent<Interaction>() != null && go.GetComponent<Interaction>() == null)
-            {
-                go = go.parent;
-            }
-            Interaction[] inters = go.GetComponents<Interaction>();
-            foreach(Interaction inter in inters)
-            {
-                inter.interaction();
-            }
-            //gameObject.SetActive(false);
-        }
-    }*/
+    /* private void OnTriggerStay2D(Collider2D collision)
+     {
+         if(collision.GetComponentInParent<Interaction>() != null && inputSys.GetInteractionDown)
+         {
+             Transform go = collision.transform;
+             while(go.GetComponentInParent<Interaction>() != null && go.GetComponent<Interaction>() == null)
+             {
+                 go = go.parent;
+             }
+             Interaction[] inters = go.GetComponents<Interaction>();
+             foreach(Interaction inter in inters)
+             {
+                 inter.interaction();
+             }
+             //gameObject.SetActive(false);
+         }
+     }*/
 
     void interactionCheck()
     {
-        Collider2D[] collisions = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 1),0);
+        Collider2D[] collisions = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 1), 0);
         foreach (Collider2D collision in collisions)
         {
             if (collision.GetComponentInParent<Interaction>() != null)
@@ -127,12 +144,14 @@ public class PlayerControll : Attackable
         }
     }
 
-    public void initStat(float attack, float hp, float speed, float Delay)
+    public void initStat(float attack, float hp, float speed, float Delay, float mana, float luck)
     {
         originDamage = attack;
         originHp = hp;
         originMoveSpeed = speed;
         originAttackDelay = Delay;
+        originMana = mana;
+        originLuck = luck;
         RefreshStat();
     }
 
@@ -144,15 +163,34 @@ public class PlayerControll : Attackable
         jumpPower = originMoveSpeed * statSpeed * 3;
         attackDelay = originAttackDelay * statAttackDelay;
         skillDelay = originAttackDelay * statAttackDelay;
+        mana = originMana * statMana;
+        luck = originLuck * statLuck;
         Debug.Log("HP : " + maxHp + ", Damage : " + damage + ", speed : " + moveSpeed + ", Delay : " + attackDelay);
     }
 
-    public void StatUp(float hpup,float damageup,float speedup,float delayup)
+    public void StatUp(Stat type, float value)
     {
-        statHp += hpup;
-        statDamage += damageup;
-        statSpeed += speedup;
-        statAttackDelay -= delayup;
+        switch (type)
+        {
+            case Stat.hp:
+                statHp += value;
+                break;
+            case Stat.damage:
+                statDamage += value;
+                break;
+            case Stat.moveSpeed:
+                statSpeed += value;
+                break;
+            case Stat.attackDelay:
+                statAttackDelay -= value;
+                break;
+            case Stat.mana:
+                statMana += value;
+                break;
+            case Stat.luck:
+                statLuck += value;
+                break;
+        }
         RefreshStat();
     }
 }

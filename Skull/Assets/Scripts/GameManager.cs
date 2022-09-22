@@ -17,14 +17,24 @@ public class GameManager : MonoBehaviour
     public GameObject outSideBackGround;
     public GameObject CaveBackGround;
     public GameObject PauseMenu;
+    public float[] MaxExp;
     PlayerInput inputSys;
     float blackCanvasAlpha;
     bool isEnter = false;
     GameObject player;
     Vector3 spawnPoint;
     int nowMap = 0;
+    float exp = 0;
+    int level = 1;
+    public int gold
+    {
+        get;
+        private set;
+    }
+
     void Start()
     {
+        gold = 0;
         for (int i = 1; i < maps.Length; i++)
         {
             maps[i].SetActive(true);
@@ -61,9 +71,11 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerDamage", 3);
         PlayerPrefs.SetFloat("PlayerMoveSpeed", 3);
         PlayerPrefs.SetFloat("PlayerAttackDelay", 3);
+        PlayerPrefs.SetFloat("PlayerMana", 3);
+        PlayerPrefs.SetFloat("PlayerLuck", 3);
 
-        player.GetComponent<PlayerControll>().initStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"));
-        //player.GetComponent<PlayerControll>().StatUp(0.2f, 0.2f, 0.2f, 0.2f);
+        player.GetComponent<PlayerControll>().initStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"), PlayerPrefs.GetFloat("PlayerMana"), PlayerPrefs.GetFloat("PlayerLuck"));
+        player.GetComponent<PlayerControll>().StatUp(Stat.hp,0.1f);
     }
 
     // Update is called once per frame
@@ -83,7 +95,7 @@ public class GameManager : MonoBehaviour
             Pause();
         }
 
-        //blackCanvas.color = new Color(blackCanvas.color.r, blackCanvas.color.g, blackCanvas.color.b, blackCanvas.color.a + ((blackCanvas.color.a + blackCanvasAlpha) / 2f - blackCanvas.color.a) * Time.deltaTime * 8);
+        blackCanvas.color = new Color(blackCanvas.color.r, blackCanvas.color.g, blackCanvas.color.b, blackCanvas.color.a + ((blackCanvas.color.a + blackCanvasAlpha) / 2f - blackCanvas.color.a) * Time.deltaTime * 8);
     }
 
     public void showHelp(string s)
@@ -156,5 +168,21 @@ public class GameManager : MonoBehaviour
     public void ReStart()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void getExp(float expup)
+    {
+        exp += expup;
+        while(exp >= MaxExp[level])
+        {
+            exp -= MaxExp[level];
+            levelUp();
+        }
+    }
+
+    void levelUp()
+    {
+        level++;
+        
     }
 }
