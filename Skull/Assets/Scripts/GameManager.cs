@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         {
             maps[i].SetActive(false);
         }
-        if (!isDebuging)
+        if (maps.Length != 0)
         {
             maps[0].SetActive(true);
             if (maps[0].name[1] == '1')
@@ -56,10 +56,6 @@ public class GameManager : MonoBehaviour
                 outSideBackGround.SetActive(false);
                 CaveBackGround.SetActive(true);
             }
-        }
-        else
-        {
-            maps[maps.Length-1].SetActive(true);
         }
 
         player = FindObjectOfType<PlayerControll>().gameObject;
@@ -75,7 +71,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerLuck", 3);
 
         player.GetComponent<PlayerControll>().initStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"), PlayerPrefs.GetFloat("PlayerMana"), PlayerPrefs.GetFloat("PlayerLuck"));
-        player.GetComponent<PlayerControll>().StatUp(Stat.hp,0.1f);
+        player.GetComponent<PlayerControll>().StatUp(Stat.hp, 0.1f);
     }
 
     // Update is called once per frame
@@ -95,7 +91,10 @@ public class GameManager : MonoBehaviour
             Pause();
         }
 
-        blackCanvas.color = new Color(blackCanvas.color.r, blackCanvas.color.g, blackCanvas.color.b, blackCanvas.color.a + ((blackCanvas.color.a + blackCanvasAlpha) / 2f - blackCanvas.color.a) * Time.deltaTime * 8);
+        if (blackCanvas != null)
+        {
+            blackCanvas.color = new Color(blackCanvas.color.r, blackCanvas.color.g, blackCanvas.color.b, blackCanvas.color.a + ((blackCanvas.color.a + blackCanvasAlpha) / 2f - blackCanvas.color.a) * Time.deltaTime * 8);
+        }
     }
 
     public void showHelp(string s)
@@ -112,7 +111,7 @@ public class GameManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject == player)
+        if (collision.gameObject == player)
         {
             player.transform.position = spawnPoint;
         }
@@ -120,7 +119,8 @@ public class GameManager : MonoBehaviour
 
     public void nextMap()
     {
-        if(!(nowMap < maps.Length-1) || isEnter) {
+        if (!(nowMap < maps.Length - 1) || isEnter)
+        {
             return;
         }
         isEnter = true;
@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
 
     public void UnPause()
     {
-        inputSys.enabled=true;
+        inputSys.enabled = true;
         PauseMenu.SetActive(false);
     }
 
@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
     public void getExp(float expup)
     {
         exp += expup;
-        while(exp >= MaxExp[level])
+        while (exp >= MaxExp[level])
         {
             exp -= MaxExp[level];
             levelUp();
@@ -183,6 +183,6 @@ public class GameManager : MonoBehaviour
     void levelUp()
     {
         level++;
-        
+
     }
 }
