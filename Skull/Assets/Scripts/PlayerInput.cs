@@ -29,4 +29,15 @@ public class PlayerInput : MonoBehaviour
         GetInteractionDown = Input.GetKeyDown(interactionKey);
         GetInteractionStay = Input.GetKey(interactionKey);
     }
+
+    public void reset()
+    {
+        Hor = 0;
+        Ver = 0;
+        GetHorDown = false;
+        GetVerDown = false;
+        GetJumpDown = false;
+        GetInteractionDown = false;
+        GetInteractionStay = false;
+    }
 }
