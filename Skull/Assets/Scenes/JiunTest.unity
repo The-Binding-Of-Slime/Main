@@ -657,6 +657,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Ui
       objectReference: {fileID: 0}
+    - target: {fileID: 8379755128072945974, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.405
+      objectReference: {fileID: 0}
+    - target: {fileID: 8379755128072945975, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8379755128072945975, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -694,8 +702,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8535051111545337868, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535051111545337868, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535051111545337869, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 8535051111548736385, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_AnchorMax.x
