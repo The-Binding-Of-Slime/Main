@@ -650,6 +650,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpKey: 32
   interactionKey: 101
+  skill1Key: 102
+  skill2Key: 113
 --- !u!4 &2133104645
 Transform:
   m_ObjectHideFlags: 0

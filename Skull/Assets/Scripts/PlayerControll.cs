@@ -56,7 +56,7 @@ public class PlayerControll : Attackable
         bool ishit = hit.collider != null && !hit.collider.isTrigger;
         if (ishit && inputSys.GetJumpDown)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, jumpPower);
+            StartCoroutine(jump());
             animator.SetTrigger("Jump");
         }
 
@@ -65,14 +65,7 @@ public class PlayerControll : Attackable
             animator.SetBool("isJump", false);
         }*/
 
-        if (ishit)
-        {
-            animator.SetBool("isGround", true);
-        }
-        else
-        {
-            animator.SetBool("isGround", false);
-        }
+        animator.SetBool("isGround", ishit);
 
         if (inputSys.Hor > 0f)
         {
@@ -83,18 +76,17 @@ public class PlayerControll : Attackable
             render.flipX = true;
         }
 
-        if (!inputSys.GetHorDown)
-        {
-            animator.SetBool("isRunning", false);
-        }
-        else
-        {
-            animator.SetBool("isRunning", true);
-        }
+        animator.SetBool("isRunning", inputSys.GetHorDown);
+
         if (inputSys.GetInteractionDown)
         {
             interactionCheck();
         }
+        if (inputSys.GetSkill2Down)
+        {
+            animator.SetTrigger("SleepSkill");
+        }
+        animator.SetBool("SpinSkill", (inputSys.GetSkill1Stay));
     }
 
     private void FixedUpdate()
@@ -194,5 +186,19 @@ public class PlayerControll : Attackable
                 break;
         }
         RefreshStat();
+    }
+
+    IEnumerator jump()
+    {
+        if (animator.GetBool("SpinSkill"))
+        {
+            yield return new WaitForSeconds(0f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.25f);
+        }
+        
+        rigid.velocity = new Vector2(rigid.velocity.x, jumpPower);
     }
 }
