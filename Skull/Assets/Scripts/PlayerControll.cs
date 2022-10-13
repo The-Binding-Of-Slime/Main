@@ -22,7 +22,7 @@ public class PlayerControll : Attackable
 
     float originHp;
     float originDamage;
-    float originMoveSpeed;
+    float originMoveSpeed = 3;
     float originAttackDelay;
     float originMana;
     float originLuck;
@@ -51,18 +51,19 @@ public class PlayerControll : Attackable
     void Update()
     {
         RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position + Vector3.down * 0.9f, Vector2.down, 0.4f);
+        hit = Physics2D.Raycast(transform.position + Vector3.down * 1.2f, Vector2.down, 0.2f);
+        //Debug.DrawRay(transform.position + Vector3.down * 1.2f, Vector3.down * 0.4f, Color.red);
         bool ishit = hit.collider != null && !hit.collider.isTrigger;
         if (ishit && inputSys.GetJumpDown)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, jumpPower);
-            animator.SetBool("isJump", true);
+            animator.SetTrigger("Jump");
         }
 
-        if (ishit && !animator.GetBool("isGround"))
+        /*if (ishit && !animator.GetBool("isGround"))
         {
             animator.SetBool("isJump", false);
-        }
+        }*/
 
         if (ishit)
         {
@@ -84,11 +85,11 @@ public class PlayerControll : Attackable
 
         if (!inputSys.GetHorDown)
         {
-            animator.SetBool("isRun", false);
+            animator.SetBool("isRunning", false);
         }
         else
         {
-            animator.SetBool("isRun", true);
+            animator.SetBool("isRunning", true);
         }
         if (inputSys.GetInteractionDown)
         {
@@ -102,6 +103,7 @@ public class PlayerControll : Attackable
         {
             rigid.AddForce(new Vector2(inputSys.Hor, 0f) * moveSpeed * 30);
         }
+        Debug.Log(inputSys.Hor);
     }
 
     /* private void OnTriggerStay2D(Collider2D collision)
@@ -160,12 +162,12 @@ public class PlayerControll : Attackable
         maxHp = originHp * statHp;
         damage = originDamage * statDamage;
         moveSpeed = originMoveSpeed * statSpeed;
-        jumpPower = originMoveSpeed * statSpeed * 3;
+        jumpPower = 6;
         attackDelay = originAttackDelay * statAttackDelay;
         skillDelay = originAttackDelay * statAttackDelay;
         mana = originMana * statMana;
         luck = originLuck * statLuck;
-        Debug.Log("HP : " + maxHp + ", Damage : " + damage + ", speed : " + moveSpeed + ", Delay : " + attackDelay);
+        //Debug.Log("HP : " + maxHp + ", Damage : " + damage + ", speed : " + moveSpeed + ", Delay : " + attackDelay);
     }
 
     public void StatUp(Stat type, float value)
