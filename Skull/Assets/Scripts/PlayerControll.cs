@@ -38,6 +38,21 @@ public class PlayerControll : Attackable
     float statMana = 1;
     float statLuck = 1;
 
+    float spinGazy
+    {
+        get { return spinGazy; }
+        set {
+            if (value < 0)
+            {
+                spinGazy = 0;
+            }
+            else
+            {
+                spinGazy = value;
+            }
+        }
+    }
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -87,6 +102,17 @@ public class PlayerControll : Attackable
             animator.SetTrigger("SleepSkill");
         }
         animator.SetBool("SpinSkill", (inputSys.GetSkill1Stay));
+
+        if (inputSys.GetSkill1Stay)
+        {
+            spinGazy+= Time.deltaTime;
+        }
+        else
+        {
+            spinGazy-= Time.deltaTime;
+        }
+
+        Debug.Log(spinGazy);
     }
 
     private void FixedUpdate()
