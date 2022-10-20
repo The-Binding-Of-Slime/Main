@@ -38,17 +38,20 @@ public class PlayerControll : Attackable
     float statMana = 1;
     float statLuck = 1;
 
-    float spinGazy
+
+    private float spinGauge;
+
+    float SpinGauge
     {
-        get { return spinGazy; }
+        get { return spinGauge; }
         set {
             if (value < 0)
             {
-                spinGazy = 0;
+                spinGauge = 0;
             }
             else
             {
-                spinGazy = value;
+                spinGauge = value;
             }
         }
     }
@@ -105,14 +108,14 @@ public class PlayerControll : Attackable
 
         if (inputSys.GetSkill1Stay)
         {
-            spinGazy+= Time.deltaTime;
+            spinGauge+= Time.deltaTime;
         }
         else
         {
-            spinGazy-= Time.deltaTime;
+            spinGauge-= Time.deltaTime;
         }
 
-        Debug.Log(spinGazy);
+        Debug.Log(spinGauge);
     }
 
     private void FixedUpdate()
@@ -226,5 +229,35 @@ public class PlayerControll : Attackable
         }
         
         rigid.velocity = new Vector2(rigid.velocity.x, jumpPower);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Item"))
+        {
+            string itemName = collision.gameObject.name;
+            switch (itemName)
+            {
+                case "Slime Gel":
+                    break;
+                case "Shield":
+                    break;
+                case "Suspicious Bottle":
+                    break;
+                case "Pearl":
+                    break;
+                case "Iron":
+                    break;
+                case "Oil Bottle":
+                    break;
+                case "Acid Bottle":
+                    break;
+                case "Red Bull":
+                    break;
+                case "Beer":
+                    break;
+            }
+            Destroy(collision.gameObject);
+        }
     }
 }
