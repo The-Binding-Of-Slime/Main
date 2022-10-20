@@ -38,17 +38,20 @@ public class PlayerControll : Attackable
     float statMana = 1;
     float statLuck = 1;
 
-    float spinGazy
+
+    private float spinGauge;
+
+    float SpinGauge
     {
-        get { return spinGazy; }
+        get { return spinGauge; }
         set {
             if (value < 0)
             {
-                spinGazy = 0;
+                spinGauge = 0;
             }
             else
             {
-                spinGazy = value;
+                spinGauge = value;
             }
         }
     }
@@ -105,14 +108,14 @@ public class PlayerControll : Attackable
 
         if (inputSys.GetSkill1Stay)
         {
-            spinGazy+= Time.deltaTime;
+            spinGauge+= Time.deltaTime;
         }
         else
         {
-            spinGazy-= Time.deltaTime;
+            spinGauge-= Time.deltaTime;
         }
 
-        Debug.Log(spinGazy);
+        Debug.Log(spinGauge);
     }
 
     private void FixedUpdate()
