@@ -227,4 +227,34 @@ public class PlayerControll : Attackable
         
         rigid.velocity = new Vector2(rigid.velocity.x, jumpPower);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Item"))
+        {
+            string itemName = collision.gameObject.name;
+            switch (itemName)
+            {
+                case "Slime Gel":
+                    break;
+                case "Shield":
+                    break;
+                case "Suspicious Bottle":
+                    break;
+                case "Pearl":
+                    break;
+                case "Iron":
+                    break;
+                case "Oil Bottle":
+                    break;
+                case "Acid Bottle":
+                    break;
+                case "Red Bull":
+                    break;
+                case "Beer":
+                    break;
+            }
+            Destroy(collision.gameObject);
+        }
+    }
 }
