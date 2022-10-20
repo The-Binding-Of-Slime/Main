@@ -38,7 +38,8 @@ public class PlayerControll : Attackable
     float statMana = 1;
     float statLuck = 1;
 
-    float spinGazy
+    float spinGazy;
+    float SpinGazy
     {
         get { return spinGazy; }
         set {
