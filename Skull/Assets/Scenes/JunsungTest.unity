@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 13930734}
   - component: {fileID: 13930733}
   m_Layer: 0
-  m_Name: Wooden Shield
+  m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 160119626}
   - component: {fileID: 160119625}
   m_Layer: 0
-  m_Name: Blue Potion 3
+  m_Name: Acid Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 533218676}
   - component: {fileID: 533218675}
   m_Layer: 0
-  m_Name: Water Bottle
+  m_Name: Suspicious Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 771530221}
   - component: {fileID: 771530220}
   m_Layer: 0
-  m_Name: Green Potion 3
+  m_Name: Oil Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 1412762848}
   - component: {fileID: 1412762847}
   m_Layer: 0
-  m_Name: Silver Ingot
+  m_Name: Iron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -806,7 +806,7 @@ GameObject:
   - component: {fileID: 1737732438}
   - component: {fileID: 1737732437}
   m_Layer: 0
-  m_Name: Red Potion 3
+  m_Name: Red Bull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
