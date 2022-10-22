@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        player = FindObjectOfType<PlayerControll>().gameObject;
+        player = FindObjectOfType<PlayerControl>().gameObject;
         inputSys = GetComponent<PlayerInput>();
         spawnPoint = GameObject.Find("Spawn Point").transform.position;
         player.transform.position = spawnPoint;
@@ -70,8 +70,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerMana", 3);
         PlayerPrefs.SetFloat("PlayerLuck", 3);
 
-        player.GetComponent<PlayerControll>().initStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"), PlayerPrefs.GetFloat("PlayerMana"), PlayerPrefs.GetFloat("PlayerLuck"));
-        player.GetComponent<PlayerControll>().StatUp(Stat.hp, 0.1f);
+        player.GetComponent<PlayerControl>().InitStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"), PlayerPrefs.GetFloat("PlayerMana"), PlayerPrefs.GetFloat("PlayerLuck"));
+        player.GetComponent<PlayerControl>().StatUp(Stat.hp, 0.1f);
     }
 
     // Update is called once per frame
@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
 
     void Pause()
     {
-        inputSys.reset();
+        inputSys.Initialize();
         inputSys.enabled = false;
         PauseMenu.SetActive(true);
     }

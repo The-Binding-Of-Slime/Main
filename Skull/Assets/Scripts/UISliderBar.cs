@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerUiTerminal : MonoBehaviour
+public class UISliderBar : MonoBehaviour
 {
     public Slider slider;
     public Text text;

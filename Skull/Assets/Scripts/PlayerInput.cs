@@ -42,7 +42,7 @@ public class PlayerInput : MonoBehaviour
         GetSkill2Stay = Input.GetKey(skill2Key);
     }
 
-    public void reset()
+    public void Initialize()
     {
         Hor = 0;
         Ver = 0;

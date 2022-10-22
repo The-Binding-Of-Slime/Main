@@ -13,7 +13,7 @@ public enum Stat
     luck
 }
 
-public class PlayerControll : Attackable
+public class PlayerControl : Attackable
 {
     PlayerInput inputSys;
     Rigidbody2D rigid;
@@ -71,10 +71,12 @@ public class PlayerControll : Attackable
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position + Vector3.down * 1.2f, Vector2.down, 0.2f);
         //Debug.DrawRay(transform.position + Vector3.down * 1.2f, Vector3.down * 0.4f, Color.red);
-        bool ishit = hit.collider != null && !hit.collider.isTrigger;
-        if (ishit && inputSys.GetJumpDown)
+        bool isGround = hit.collider != null && !hit.collider.isTrigger;
+
+
+        if (isGround && inputSys.GetJumpDown)
         {
-            StartCoroutine(jump());
+            StartCoroutine(Jump());
             animator.SetTrigger("Jump");
         }
 
@@ -83,7 +85,7 @@ public class PlayerControll : Attackable
             animator.SetBool("isJump", false);
         }*/
 
-        animator.SetBool("isGround", ishit);
+        animator.SetBool("isGround", isGround);
 
         if (inputSys.Hor > 0f)
         {
@@ -98,7 +100,7 @@ public class PlayerControll : Attackable
 
         if (inputSys.GetInteractionDown)
         {
-            interactionCheck();
+            InteractionCheck();
         }
         if (inputSys.GetSkill2Down)
         {
@@ -115,7 +117,6 @@ public class PlayerControll : Attackable
             spinGauge-= Time.deltaTime;
         }
 
-        Debug.Log(spinGauge);
     }
 
     private void FixedUpdate()
@@ -145,7 +146,7 @@ public class PlayerControll : Attackable
          }
      }*/
 
-    void interactionCheck()
+    void InteractionCheck()
     {
         Collider2D[] collisions = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 1), 0);
         foreach (Collider2D collision in collisions)
@@ -167,7 +168,7 @@ public class PlayerControll : Attackable
         }
     }
 
-    public void initStat(float attack, float hp, float speed, float Delay, float mana, float luck)
+    public void InitStat(float attack, float hp, float speed, float Delay, float mana, float luck)
     {
         originDamage = attack;
         originHp = hp;
@@ -217,7 +218,7 @@ public class PlayerControll : Attackable
         RefreshStat();
     }
 
-    IEnumerator jump()
+    IEnumerator Jump()
     {
         if (animator.GetBool("SpinSkill"))
         {

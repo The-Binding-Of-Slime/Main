@@ -22,7 +22,7 @@ public class Key : Trigger, Interaction
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(isSensor && collision.GetComponentInParent<PlayerControll>() != null)
+        if(isSensor && collision.GetComponentInParent<PlayerControl>() != null)
         {
             foreach (Interaction inter in GetComponents<Interaction>())
             {

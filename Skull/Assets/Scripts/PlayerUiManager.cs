@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PlayerUiManager : MonoBehaviour
+public class PlayerUIManager : MonoBehaviour
 {
-    public PlayerUiTerminal hpSlider;
-    public PlayerUiTerminal mpSlider;
-    public PlayerUiTerminal goldSlider;
-    public PlayerUiTerminal intSlider;
-    public PlayerUiTerminal expSlider;
+    public UISliderBar hpSlider;
+    public UISliderBar mpSlider;
+    public UISliderBar goldSlider;
+    public UISliderBar intSlider;
+    public UISliderBar expSlider;
 
     void Start()
     {

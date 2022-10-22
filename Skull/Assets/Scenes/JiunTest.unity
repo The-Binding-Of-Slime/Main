@@ -511,11 +511,31 @@ MonoBehaviour:
   skill: {fileID: 0}
   attackDelay: 1
   skillDelay: 1
+  damage: 1
   attackDamage: 1
   skillDamage: 1
   skillMana: 0
+  mana: 0
+  inputSys: {fileID: 0}
+  rigid: {fileID: 0}
+  animator: {fileID: 0}
+  render: {fileID: 0}
+  originHp: 0
+  originDamage: 0
+  originMoveSpeed: 3
+  originAttackDelay: 0
+  originMana: 0
+  originLuck: 0
   moveSpeed: 1
   jumpPower: 1
+  luck: 0
+  statDamage: 1
+  statHp: 1
+  statSpeed: 1
+  statAttackDelay: 1
+  statMana: 1
+  statLuck: 1
+  spinGauge: 0
 --- !u!58 &2086573731
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -682,6 +702,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8379755127899529296, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8379755127899529297, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -770,6 +794,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Ui
       objectReference: {fileID: 0}
+    - target: {fileID: 8379755127899529301, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8379755128072945974, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_FillAmount
       value: 0.405
@@ -798,11 +826,19 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8535051110439881177, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8535051110476171932, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8535051110476171932, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535051110924716754, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
