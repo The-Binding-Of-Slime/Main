@@ -12,7 +12,7 @@ public class Item : MonoBehaviour
 
         bool CanUseItem = false;
 
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Item")
         {
             bool HpItem = collision.gameObject.name.Contains("Slime");
             bool DamageItem = collision.gameObject.name.Contains("Acid");
@@ -57,4 +57,18 @@ public class Item : MonoBehaviour
             }
         }
     }
+
+    /*    void SlimeGell(float n)
+        {
+
+        }*/
+
+    /*    void Beer(float n)
+        {
+
+        }*/
+    /*    void SuspiciousBottle(float n)
+        {
+
+        }*/
 }
