@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    public static PlayerInput Instance;
+
     public KeyCode jumpKey;
     public KeyCode interactionKey;
     public KeyCode skill1Key;
@@ -21,6 +23,14 @@ public class PlayerInput : MonoBehaviour
 
     public bool GetSkill2Down { get; private set; }
     public bool GetSkill2Stay { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
     void Start()
     {
         
