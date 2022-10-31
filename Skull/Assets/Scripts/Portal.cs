@@ -16,8 +16,8 @@ public class Portal : MonoBehaviour, Interaction
     {
     }
 
-    public void interaction()
+    public void Interaction()
     {
-        FindObjectOfType<GameManager>().nextMap();
+        FindObjectOfType<GameManager>().NextMap();
     }
 }

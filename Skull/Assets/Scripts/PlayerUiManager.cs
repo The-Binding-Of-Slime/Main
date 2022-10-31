@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+//슬라이더 관리용 클래스
+//캔버스에 넣어서 사용
 public class PlayerUiManager : MonoBehaviour
 {
-    public PlayerUiTerminal hpSlider;
-    public PlayerUiTerminal mpSlider;
-    public PlayerUiTerminal goldSlider;
-    public PlayerUiTerminal intSlider;
-    public PlayerUiTerminal expSlider;
+    public UISliderBar hpSlider;
+    public UISliderBar mpSlider;
+    public UISliderBar goldSlider;
+    public UISliderBar intSlider;
+    public UISliderBar expSlider;
 
     void Start()
     {

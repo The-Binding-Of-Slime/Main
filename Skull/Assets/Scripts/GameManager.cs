@@ -5,18 +5,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[ExecuteInEditMode]
 public class GameManager : MonoBehaviour
 {
+    [Header("-도움말")]
     public GameObject helpUi;
     public GameObject helpKeyUi;
     public Text helpText;
-    public GameObject questManager;
+    [Header("-스테이지 배열")]
     public GameObject[] maps;
-    public bool isDebuging;
+    [Header("-암전효과")]
     public Image blackCanvas;
+    [Header("-배경1")]
     public GameObject outSideBackGround;
+    [Header("-배경2")]
     public GameObject CaveBackGround;
     public GameObject PauseMenu;
+    [Header("-레벨별 필요EXP(누적X)")]
     public float[] MaxExp;
     PlayerInput inputSys;
     float blackCanvasAlpha;
@@ -26,15 +31,21 @@ public class GameManager : MonoBehaviour
     int nowMap = 0;
     float exp = 0;
     int level = 1;
-    public int gold
+    public int Gold
     {
         get;
         private set;
     }
 
+    bool startCount = false;
     void Start()
     {
-        gold = 0;
+        if (!startCount)
+        {
+            return;
+        }
+        startCount = true;
+        Gold = 0;
         for (int i = 1; i < maps.Length; i++)
         {
             maps[i].SetActive(true);
@@ -58,20 +69,21 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        player = FindObjectOfType<PlayerControll>().gameObject;
+        player = FindObjectOfType<PlayerControl>().gameObject;
         inputSys = GetComponent<PlayerInput>();
         spawnPoint = GameObject.Find("Spawn Point").transform.position;
         player.transform.position = spawnPoint;
 
         PlayerPrefs.SetFloat("PlayerHp", 3);
         PlayerPrefs.SetFloat("PlayerDamage", 3);
-        PlayerPrefs.SetFloat("PlayerMoveSpeed", 3);
+        PlayerPrefs.SetFloat("PlayerMoveSpeed", 1);
         PlayerPrefs.SetFloat("PlayerAttackDelay", 3);
         PlayerPrefs.SetFloat("PlayerMana", 3);
         PlayerPrefs.SetFloat("PlayerLuck", 3);
 
-        player.GetComponent<PlayerControll>().initStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"), PlayerPrefs.GetFloat("PlayerMana"), PlayerPrefs.GetFloat("PlayerLuck"));
-        player.GetComponent<PlayerControll>().StatUp(Stat.hp, 0.1f);
+        Debug.Log("gameManager start");
+        player.GetComponent<PlayerStatManger>().InitStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"), PlayerPrefs.GetFloat("PlayerMana"), PlayerPrefs.GetFloat("PlayerLuck"));
+        player.GetComponent<PlayerStatManger>().StatUp(Stat.hp, 0.1f);
     }
 
     // Update is called once per frame
@@ -97,13 +109,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void showHelp(string s)
+    //도움말 출력용
+    public void ShowHelp(string s)
     {
         helpUi.SetActive(true);
         helpText.text = s;
     }
 
-    public void closeHelp()
+    //도움말 닫기
+    public void CloseHelp()
     {
         helpText.text = "";
         helpUi.SetActive(false);
@@ -117,17 +131,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void nextMap()
+    //다음스테이지 호출
+    public void NextMap()
     {
         if (!(nowMap < maps.Length - 1) || isEnter)
         {
             return;
         }
         isEnter = true;
-        StartCoroutine(blackDown());
+        StartCoroutine(BlackDown());
     }
 
-    IEnumerator blackDown()
+    //스테이지 전환시 장면전환 효과(암전)
+    IEnumerator BlackDown()
     {
         blackCanvasAlpha = 1.3f;
         yield return new WaitForSeconds(1f);
@@ -152,35 +168,39 @@ public class GameManager : MonoBehaviour
         isEnter = false;
     }
 
+    //일시정지
     void Pause()
     {
-        inputSys.reset();
+        inputSys.Initialize();
         inputSys.enabled = false;
         PauseMenu.SetActive(true);
     }
 
+    //재생
     public void UnPause()
     {
         inputSys.enabled = true;
         PauseMenu.SetActive(false);
     }
 
+    //메인화면으로 돌아가기
     public void ReStart()
     {
         SceneManager.LoadScene(0);
     }
 
-    public void getExp(float expup)
+    //exp획득 및 레벨업 호출
+    public void GetExp(float expup)
     {
         exp += expup;
         while (exp >= MaxExp[level])
         {
             exp -= MaxExp[level];
-            levelUp();
+            LevelUp();
         }
     }
 
-    void levelUp()
+    void LevelUp()
     {
         level++;
 

@@ -35,21 +35,21 @@ public class DamageSkill : MonoBehaviour
             bool isIn=false;
             foreach(GameObject go in hitList)
             {
-                if(go == collision.GetComponentInParent<Hitable>().gameObject)
+                if(go == collision.GetComponentInParent<Victim>().gameObject)
                 {
                     isIn=true;
                 }
             }
             if (isIn)
             {
-                collision.GetComponentInParent<Hitable>().takeDamage(skillDamage);
+                collision.GetComponentInParent<Victim>().TakeDamage(skillDamage);
             }
         }
         else
         {
             if(dotTimer == 0f)
             {
-                collision.GetComponentInParent<Hitable>().takeDamage(skillDamage / 4f);
+                collision.GetComponentInParent<Victim>().TakeDamage(skillDamage / 4f);
                 dotTimer = 0.25f;
             }
         }

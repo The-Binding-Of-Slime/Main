@@ -5,8 +5,8 @@ using UnityEngine;
 public class Teleport : Trigger, Interaction
 {
     public Transform targetPos;
-    public void interaction()
+    public void Interaction()
     {
-        FindObjectOfType<PlayerControll>().transform.position = targetPos.position;
+        FindObjectOfType<PlayerControl>().transform.position = targetPos.position;
     }
 }

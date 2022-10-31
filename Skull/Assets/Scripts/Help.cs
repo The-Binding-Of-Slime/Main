@@ -8,29 +8,30 @@ public class Help : MonoBehaviour
     GameManager gameManager;
     [TextArea]
     public string HelpText;
-    void start()
+    void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         //HelpText = HelpText.Replace("\\n", "\n");
     }
 
     private void OnEnable()
     {
-        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.GetComponent<PlayerControll>() != null)
+        if (collision.transform.GetComponent<PlayerControl>() != null)
         {
-            gameManager.showHelp(HelpText);
+            gameManager.ShowHelp(HelpText);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.transform.GetComponent<PlayerControll>() != null)
+        if (collision.transform.GetComponent<PlayerControl>() != null)
         {
-            gameManager.closeHelp();
+            gameManager.CloseHelp();
         }
     }
 

@@ -301,6 +301,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1164500771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1164500772}
+  m_Layer: 0
+  m_Name: Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1164500772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164500771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1451716149
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +414,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2086573726
 GameObject:
@@ -396,10 +427,13 @@ GameObject:
   - component: {fileID: 2086573733}
   - component: {fileID: 2086573732}
   - component: {fileID: 2086573731}
-  - component: {fileID: 2086573730}
   - component: {fileID: 2086573729}
   - component: {fileID: 2086573728}
   - component: {fileID: 2086573727}
+  - component: {fileID: 2086573737}
+  - component: {fileID: 2086573736}
+  - component: {fileID: 2086573735}
+  - component: {fileID: 2086573734}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -494,28 +528,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2086573730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086573726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cfaed9551e3fad4b8ad24087379d446, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 1
-  attack: {fileID: 0}
-  skill: {fileID: 0}
-  attackDelay: 1
-  skillDelay: 1
-  attackDamage: 1
-  skillDamage: 1
-  skillMana: 0
-  moveSpeed: 1
-  jumpPower: 1
 --- !u!58 &2086573731
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -561,13 +573,73 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086573726}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2086573734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086573726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab66e651dbdead54ea6b1bf0c2971659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 0}
+  skill: {fileID: 0}
+  attackDelay: 0
+  skillDelay: 0
+  damage: 1
+  attackDamage: 0
+  skillDamage: 0
+  skillMana: 0
+  mana: 0
+--- !u!114 &2086573735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086573726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efdf0121b3717384fa539c085299eebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+--- !u!114 &2086573736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086573726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae29e2317896b94183992336f0719af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2086573737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086573726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7532fa41b2e4db840b08a86992ad49a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  jumpPower: 9
 --- !u!1 &2133104641
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,9 +700,7 @@ MonoBehaviour:
   helpUi: {fileID: 0}
   helpKeyUi: {fileID: 0}
   helpText: {fileID: 0}
-  questManager: {fileID: 0}
   maps: []
-  isDebuging: 0
   blackCanvas: {fileID: 0}
   outSideBackGround: {fileID: 0}
   CaveBackGround: {fileID: 0}
@@ -681,6 +751,10 @@ PrefabInstance:
     - target: {fileID: 8379755127717304420, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8379755127899529296, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8379755127899529297, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_Pivot.x
@@ -770,6 +844,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Ui
       objectReference: {fileID: 0}
+    - target: {fileID: 8379755127899529301, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8379755128072945974, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_FillAmount
       value: 0.405
@@ -798,11 +876,19 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8535051110439881177, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8535051110476171932, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8535051110476171932, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535051110924716754, guid: bfe27f68de6dbee479ae0a5127962b8e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}

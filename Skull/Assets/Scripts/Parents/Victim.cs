@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hitable : MonoBehaviour
+//체력, 피격관련 클래스
+public class Victim : MonoBehaviour
 {
     public float maxHp;
-    public float hp
+
+    private float hp;
+    public float Hp
     {
-        get { return maxHp; }
+        get { return hp; }
         private set { 
-            if(value <= 0)
+            if(value <= 0f)
             {
-                hp = 0;
+                hp = 0f;
             } 
             else if(value > maxHp)
             {
@@ -26,32 +29,26 @@ public class Hitable : MonoBehaviour
 
     void Start()
     {
-        
+        hp = maxHp;
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void TakeDamage(float damage)
     {
-        
-    }
-
-    public virtual void takeDamage(float damage)
-    {
-        if (damage > 0)
+        if (damage >= 0)
         {
-            hp -= damage;
+            Hp -= damage;
         }
-        if(hp <= 0)
+        if(Hp <= 0)
         {
             Die();
         }
     }
 
-    public virtual void takeHeal(float heal)
+    public virtual void TakeHeal(float heal)
     {
         if(heal > 0)
         {
-            hp += heal;
+            Hp += heal;
         }
     }
 
