@@ -2,43 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class Key : Trigger, Interaction
 {
+    [Header("-사용시 사라짐")]
     public bool isAfterDestroy;
+    [Header("-사용시 비활성화됨")]
     public bool isOnce;
+    [Header("-플레이어에게 닿으면 사용됨")]
     public bool isSensor;
     bool count = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(isSensor && collision.GetComponentInParent<PlayerControl>() != null)
         {
             foreach (Interaction inter in GetComponents<Interaction>())
             {
-                inter.interaction();
+                inter.Interaction();
             }
         }
     }
 
-    public void interaction()
+    public void Interaction()
     {
         if(count && !isOnce)
         {
             return;
         }
         count = true;
-        input(true);
+        Input(true);
         output();
         if (isAfterDestroy)
         {

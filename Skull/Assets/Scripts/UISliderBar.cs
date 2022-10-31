@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//슬라이더 관리용
+//슬라이더에 넣어서 씀
 public class UISliderBar : MonoBehaviour
 {
     public Slider slider;
@@ -29,6 +31,7 @@ public class UISliderBar : MonoBehaviour
         if (slider != null)
         {
             slider.value = value / maxValue;
+            slider.maxValue = maxValue;
         }
         if (text != null)
         {

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//입력관련 담당
+//PlayerControl에서 참조하는 클래스
 public class PlayerInput : MonoBehaviour
 {
     public KeyCode jumpKey;

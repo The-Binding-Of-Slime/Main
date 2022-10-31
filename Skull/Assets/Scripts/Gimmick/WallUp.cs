@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class WallUp : Trigger
 {
+    [Header("-작동시 이동량")]
     public Vector2 reverseVector;
+    [Header("-이동속도 (0 ~ 1)")]
     public float speed;
+    [Header("-작동시 콜라이더 비활성화여부")]
     public bool colliderControll;
     Vector2 originVector;
     Vector2 movedVector;
     float sibal;
+
     float positionValue
     {
         get { return sibal; }
@@ -43,13 +48,6 @@ public class WallUp : Trigger
         }
     }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-        
-    }
-
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
@@ -66,9 +64,9 @@ public class WallUp : Trigger
         transform.position = movedVector * positionValue + originVector * (1f - positionValue);
     }
 
-    public override void input(bool val)
+    public override void Input(bool val)
     {
-        base.input(val);
+        base.Input(val);
         run();
     }
 

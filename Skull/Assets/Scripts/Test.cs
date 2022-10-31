@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    PlayerUIManager ui;
+    PlayerUiManager ui;
     public float value;
     public float maxValue;
     void Start()
     {
-        ui = GetComponent<PlayerUIManager>();
+        ui = GetComponent<PlayerUiManager>();
     }
 
     // Update is called once per frame

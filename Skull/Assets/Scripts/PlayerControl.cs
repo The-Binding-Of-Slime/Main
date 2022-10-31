@@ -3,41 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Stat
-{
-    hp,
-    damage,
-    moveSpeed,
-    attackDelay,
-    mana,
-    luck
-}
-
-public class PlayerControl : Attackable
+//이동, 애니메이션 구현 클래스
+public class PlayerControl : Mover
 {
     PlayerInput inputSys;
-    Rigidbody2D rigid;
     Animator animator;
     SpriteRenderer render;
-
-    float originHp;
-    float originDamage;
-    float originMoveSpeed = 3;
-    float originAttackDelay;
-    float originMana;
-    float originLuck;
-
-    public float moveSpeed;
-    public float jumpPower;
-    float luck;
-
-    float statDamage = 1;
-    float statHp = 1;
-    float statSpeed = 1;
-    float statAttackDelay = 1;
-    float statMana = 1;
-    float statLuck = 1;
-
 
     private float spinGauge;
 
@@ -56,37 +27,17 @@ public class PlayerControl : Attackable
         }
     }
 
-    void Start()
+    protected override void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        base.Start();
         inputSys = FindObjectOfType<PlayerInput>();
         animator = GetComponent<Animator>();
         render = GetComponent<SpriteRenderer>();
-        RefreshStat();
     }
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position + Vector3.down * 1.2f, Vector2.down, 0.2f);
-        //Debug.DrawRay(transform.position + Vector3.down * 1.2f, Vector3.down * 0.4f, Color.red);
-        bool isGround = hit.collider != null && !hit.collider.isTrigger;
-
-
-        if (isGround && inputSys.GetJumpDown)
-        {
-            StartCoroutine(Jump());
-            animator.SetTrigger("Jump");
-        }
-
-        /*if (ishit && !animator.GetBool("isGround"))
-        {
-            animator.SetBool("isJump", false);
-        }*/
-
-        animator.SetBool("isGround", isGround);
-
         if (inputSys.Hor > 0f)
         {
             render.flipX = false;
@@ -108,24 +59,34 @@ public class PlayerControl : Attackable
         }
         animator.SetBool("SpinSkill", (inputSys.GetSkill1Stay));
 
+
         if (inputSys.GetSkill1Stay)
         {
-            spinGauge+= Time.deltaTime;
+            SpinGauge+= Time.deltaTime;
         }
         else
         {
-            spinGauge-= Time.deltaTime;
+            SpinGauge-= Time.deltaTime;
         }
-
     }
 
     private void FixedUpdate()
     {
-        if (inputSys.GetHorDown && Mathf.Abs(rigid.velocity.x) < moveSpeed)
+        if (inputSys.GetHorDown && Mathf.Abs(Rigid.velocity.x) < moveSpeed)
         {
-            rigid.AddForce(new Vector2(inputSys.Hor, 0f) * moveSpeed * 30);
+            //rigid.AddForce(30 * moveSpeed * new Vector2(inputSys.Hor, 0f));
+            Move(inputSys.Hor);
         }
-        Debug.Log(inputSys.Hor);
+
+
+        bool isGround = CheckIsGround();
+        if (isGround && inputSys.GetJumpDown)
+        {
+            Jump();
+            animator.SetTrigger("Jump");
+        }
+
+        animator.SetBool("isGround", isGround);
     }
 
     /* private void OnTriggerStay2D(Collider2D collision)
@@ -161,78 +122,16 @@ public class PlayerControl : Attackable
                 Interaction[] inters = go.GetComponents<Interaction>();
                 foreach (Interaction inter in inters)
                 {
-                    inter.interaction();
+                    inter.Interaction();
                 }
                 //gameObject.SetActive(false);
             }
         }
     }
 
-    public void InitStat(float attack, float hp, float speed, float Delay, float mana, float luck)
-    {
-        originDamage = attack;
-        originHp = hp;
-        originMoveSpeed = speed;
-        originAttackDelay = Delay;
-        originMana = mana;
-        originLuck = luck;
-        RefreshStat();
-    }
+    
 
-    void RefreshStat()
-    {
-        maxHp = originHp * statHp;
-        damage = originDamage * statDamage;
-        moveSpeed = originMoveSpeed * statSpeed;
-        jumpPower = 6;
-        attackDelay = originAttackDelay * statAttackDelay;
-        skillDelay = originAttackDelay * statAttackDelay;
-        mana = originMana * statMana;
-        luck = originLuck * statLuck;
-        //Debug.Log("HP : " + maxHp + ", Damage : " + damage + ", speed : " + moveSpeed + ", Delay : " + attackDelay);
-    }
-
-    public void StatUp(Stat type, float value)
-    {
-        switch (type)
-        {
-            case Stat.hp:
-                statHp += value;
-                break;
-            case Stat.damage:
-                statDamage += value;
-                break;
-            case Stat.moveSpeed:
-                statSpeed += value;
-                break;
-            case Stat.attackDelay:
-                statAttackDelay -= value;
-                break;
-            case Stat.mana:
-                statMana += value;
-                break;
-            case Stat.luck:
-                statLuck += value;
-                break;
-        }
-        RefreshStat();
-    }
-
-    IEnumerator Jump()
-    {
-        if (animator.GetBool("SpinSkill"))
-        {
-            yield return new WaitForSeconds(0f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.25f);
-        }
-        
-        rigid.velocity = new Vector2(rigid.velocity.x, jumpPower);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Item"))
         {
@@ -260,5 +159,5 @@ public class PlayerControl : Attackable
             }
             Destroy(collision.gameObject);
         }
-    }
+    }*/
 }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PlayerUIManager : MonoBehaviour
+//슬라이더 관리용 클래스
+//캔버스에 넣어서 사용
+public class PlayerUiManager : MonoBehaviour
 {
     public UISliderBar hpSlider;
     public UISliderBar mpSlider;

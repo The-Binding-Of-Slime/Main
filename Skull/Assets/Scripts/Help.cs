@@ -23,7 +23,7 @@ public class Help : MonoBehaviour
     {
         if (collision.transform.GetComponent<PlayerControl>() != null)
         {
-            gameManager.showHelp(HelpText);
+            gameManager.ShowHelp(HelpText);
         }
     }
 
@@ -31,7 +31,7 @@ public class Help : MonoBehaviour
     {
         if (collision.transform.GetComponent<PlayerControl>() != null)
         {
-            gameManager.closeHelp();
+            gameManager.CloseHelp();
         }
     }
 
