@@ -40,11 +40,11 @@ public class GameManager : MonoBehaviour
     bool startCount = false;
     void Start()
     {
-        if (!startCount)
-        {
-            return;
-        }
-        startCount = true;
+        //if (!startCount)
+        //{
+        //    return;
+        //}
+        //startCount = true;
         Gold = 0;
         for (int i = 1; i < maps.Length; i++)
         {
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerMana", 3);
         PlayerPrefs.SetFloat("PlayerLuck", 3);
 
-        Debug.Log("gameManager start");
+        //Debug.Log("gameManager start");
         player.GetComponent<PlayerStatManger>().InitStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"), PlayerPrefs.GetFloat("PlayerMana"), PlayerPrefs.GetFloat("PlayerLuck"));
         player.GetComponent<PlayerStatManger>().StatUp(Stat.hp, 0.1f);
     }

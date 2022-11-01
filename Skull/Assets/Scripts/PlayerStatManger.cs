@@ -17,7 +17,7 @@ public class PlayerStatManger : MonoBehaviour
 {
     PlayerControl control;
     Attacker attacker;
-    Victim victim;
+    [SerializeField] Victim victim;
 
     //게임이 끝나도 저장되는 스탯
     float originHp;
@@ -40,11 +40,12 @@ public class PlayerStatManger : MonoBehaviour
     bool startCount = false;
     void Start()
     {
-        if (!startCount)
+        /*if (!startCount)
         {
+            Debug.Log("작동");
             return;
         }
-        startCount = true;
+        startCount = true;*/
         control = GetComponent<PlayerControl>();
         attacker = GetComponent<Attacker>();
         victim = GetComponent<Victim>();
@@ -64,7 +65,7 @@ public class PlayerStatManger : MonoBehaviour
 
     void RefreshStat()
     {
-        Debug.Log(victim);
+        if (victim == null) return;
         victim.maxHp = originHp * statHp;
         attacker.damage = originDamage * statDamage;
         control.SetSpeed(originMoveSpeed * statSpeed, 6);
