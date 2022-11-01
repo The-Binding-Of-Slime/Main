@@ -68,24 +68,27 @@ public class PlayerControl : Mover
         {
             SpinGauge-= Time.deltaTime;
         }
+
+        if (inputSys.GetJumpDown)
+        {
+            if (Jump())
+            {
+                animator.SetTrigger("Jump");
+            }
+        }
+
     }
 
     private void FixedUpdate()
     {
-        if (inputSys.GetHorDown && Mathf.Abs(Rigid.velocity.x) < moveSpeed)
+        Debug.DrawLine(transform.position + Vector3.down * 1.2f, transform.position + Vector3.down * 1.2f + Vector3.down * 0.2f, Color.black, 0.2f);
+        if (inputSys.GetHorDown/* && Rigid.velocity.x * inputSys.Hor < 0*/)
         {
             //rigid.AddForce(30 * moveSpeed * new Vector2(inputSys.Hor, 0f));
             Move(inputSys.Hor);
         }
 
-
         bool isGround = CheckIsGround();
-        if (isGround && inputSys.GetJumpDown)
-        {
-            Jump();
-            animator.SetTrigger("Jump");
-        }
-
         animator.SetBool("isGround", isGround);
     }
 
