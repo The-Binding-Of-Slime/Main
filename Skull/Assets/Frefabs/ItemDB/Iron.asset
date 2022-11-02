@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron
   m_EditorClassIdentifier: 
   ItemData:
-    ItemID: "\uCCA0 \uC8FC\uAD34"
+    ItemID: "\uCCA0\uC8FC\uAD34"
     gameObject: {fileID: 5864364834065224413, guid: 60b828ebe5dffe844b5a8f7398058b82, type: 3}
     hp: 5
     damage: 0

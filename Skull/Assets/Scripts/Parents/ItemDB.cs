@@ -16,10 +16,16 @@ public class ItemData
 }
 public class ItemDB : MonoBehaviour
 {
-    Dictionary<string, ItemData> ItemDictionary;
+    [SerializeField]ItemDictionary SCTItemDictionary;
+    public Dictionary<string, ItemData> itemDictionary;
 
     void Start()
     {
-        ItemDictionary = new Dictionary<string, ItemData>();
+        itemDictionary = new Dictionary<string, ItemData>();
+        foreach (Item i in SCTItemDictionary.Item)
+        {
+            itemDictionary.Add(i.ItemData.ItemID, i.ItemData);
+            Debug.Log(i.name + "" + i.ItemData);
+        }
     }
 }
