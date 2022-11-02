@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6950989798017057726
+--- !u!1 &6171248383904196949
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6950989798017057724}
-  - component: {fileID: 6950989798017057725}
-  - component: {fileID: 3996773831095142439}
-  - component: {fileID: -8031546005480790619}
-  - component: {fileID: 2930662574476547843}
+  - component: {fileID: 6171248383904196951}
+  - component: {fileID: 6171248383904196950}
+  - component: {fileID: 4957969874660961351}
+  - component: {fileID: -1257950084880956854}
+  - component: {fileID: -8783282618084556335}
   m_Layer: 0
-  m_Name: Slime Gel
+  m_Name: Pearl
   m_TagString: ShopItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6950989798017057724
+--- !u!4 &6171248383904196951
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6950989798017057726}
+  m_GameObject: {fileID: 6171248383904196949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3595514, y: 1.8445494, z: 0}
+  m_LocalPosition: {x: -2.067119, y: -0.5462904, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6950989798017057725
+--- !u!212 &6171248383904196950
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6950989798017057726}
+  m_GameObject: {fileID: 6171248383904196949}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d1f94eb541d98c94c9e0a776707e9c7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c523fa3ca4e1fc4b9a5713e504e6cce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,38 +87,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3996773831095142439
+--- !u!114 &4957969874660961351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6950989798017057726}
+  m_GameObject: {fileID: 6171248383904196949}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5743871294c1cb941ace837711f705fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
---- !u!114 &-8031546005480790619
+  itemName: "\uC9C4\uC8FC"
+--- !u!114 &-1257950084880956854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6950989798017057726}
+  m_GameObject: {fileID: 6171248383904196949}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a341d660a6f4f0c4ba6f04ef47936132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &2930662574476547843
+--- !u!61 &-8783282618084556335
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6950989798017057726}
+  m_GameObject: {fileID: 6171248383904196949}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
