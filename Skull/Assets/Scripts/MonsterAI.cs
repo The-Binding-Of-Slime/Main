@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MonsterAI : Mover
+public class MonsterAI : MonoBehaviour
 {
-    GameObject target;
-    float findRange = 2;
-    float lostRange = 4;
+    [SerializeField]GameObject target;
+    float findRange = 6;
+    float lostRange = 8;
     bool isFind;
 
-    protected override void Start()
+    Animator animator;
+    SpriteRenderer render;
+    Mover mover;
+    Attacker attacker;
+
+    protected void Start()
     {
-        
+        animator = GetComponent<Animator>();
+        render = GetComponent<SpriteRenderer>();
+        mover = GetComponent<Mover>();
+        attacker = GetComponent<Attacker>();
+        mover.SetSpeed(1, 1);
     }
 
     
@@ -32,17 +41,22 @@ public class MonsterAI : Mover
             isFind=false;
         }
 
-        bool isLeftRayHit = Physics2D.Raycast(transform.position + transform.localScale.x / 2 * Vector3.left, Vector2.down, 1f).collider != null;
-        bool isRightRayHit = Physics2D.Raycast(transform.position + transform.localScale.x / 2 * Vector3.right,Vector2.down,1f).collider != null;
+        bool isLeftRayHit = Physics2D.Raycast(transform.position + transform.localScale.x / 2 * new Vector3(1, -2, 0), Vector2.down, 1f).collider != null;
+        bool isRightRayHit = Physics2D.Raycast(transform.position + transform.localScale.x / 2 * new Vector3(-1, -2, 0), Vector2.down,1f).collider != null;
+        
         if (isFind)
         {
-            if (!isLeftRayHit && transform.position.x > target.transform.position.x)
+            if (isRightRayHit && transform.position.x > target.transform.position.x)
             {
-                Move(-3);
+                mover.Move(-0.5f);
             }
-            else if(!isRightRayHit && transform.position.x < target.transform.position.x)
+            else if(isLeftRayHit && transform.position.x < target.transform.position.x)
             {
-                Move(3);
+                mover.Move(0.5f);
+            }
+            if(distance < 2)
+            {
+                
             }
         }
     }
@@ -51,6 +65,4 @@ public class MonsterAI : Mover
     {
         target = FindObjectOfType<PlayerControl>().gameObject;
     }
-
-
 }

@@ -17,7 +17,7 @@ public class PlayerStatManger : MonoBehaviour
 {
     PlayerControl control;
     Attacker attacker;
-    [SerializeField] Victim victim;
+    Victim victim;
 
     //게임이 끝나도 저장되는 스탯
     float originHp;
@@ -49,7 +49,8 @@ public class PlayerStatManger : MonoBehaviour
         control = GetComponent<PlayerControl>();
         attacker = GetComponent<Attacker>();
         victim = GetComponent<Victim>();
-        RefreshStat();
+        Freference();
+        //RefreshStat();
     }
 
     public void InitStat(float attack, float hp, float speed, float Delay, float mana, float luck)
@@ -103,5 +104,17 @@ public class PlayerStatManger : MonoBehaviour
         RefreshStat();
     }
 
-    
+    void Freference()
+    {
+        /*PlayerPrefs.SetFloat("PlayerHp", 3);
+        PlayerPrefs.SetFloat("PlayerDamage", 3);
+        PlayerPrefs.SetFloat("PlayerMoveSpeed", 3);
+        PlayerPrefs.SetFloat("PlayerAttackDelay", 3);
+        PlayerPrefs.SetFloat("PlayerMana", 3);
+        PlayerPrefs.SetFloat("PlayerLuck", 3);*/
+
+        //InitStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"), PlayerPrefs.GetFloat("PlayerMana"), PlayerPrefs.GetFloat("PlayerLuck"));
+        InitStat(3, 3, 3, 3, 3, 3);
+        RefreshStat();
+    }
 }

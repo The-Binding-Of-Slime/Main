@@ -14,7 +14,7 @@ public class Mover : MonoBehaviour
         Rigid = GetComponent<Rigidbody2D>();
     }
 
-    protected void Move(float speed)
+    public void Move(float speed)
     {
         if(Mathf.Abs(Rigid.velocity.x) <= maxSpeed)
         {
