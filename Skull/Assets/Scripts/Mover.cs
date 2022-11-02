@@ -14,9 +14,9 @@ public class Mover : MonoBehaviour
         Rigid = GetComponent<Rigidbody2D>();
     }
 
-    protected void Move(float speed)
+    public void Move(float speed)
     {
-        if(Rigid.velocity.x <= maxSpeed)
+        if(Mathf.Abs(Rigid.velocity.x) <= maxSpeed)
         {
             Rigid.AddForce(30 * moveSpeed * speed * Vector3.right);
         }
@@ -26,6 +26,7 @@ public class Mover : MonoBehaviour
     {
         RaycastHit2D rayhit;
         rayhit = Physics2D.Raycast(transform.position + Vector3.down * 1.2f, Vector2.down, 0.2f);
+        Debug.DrawLine(transform.position + Vector3.down * 1.2f, transform.position + Vector3.down * 1.2f + Vector3.down * 0.2f,Color.black,0.2f);
         //Debug.DrawRay(transform.position + Vector3.down * 1.2f, Vector3.down * 0.4f, Color.red);
         bool isGround = rayhit.collider != null && !rayhit.collider.isTrigger;
         return isGround;
@@ -38,8 +39,16 @@ public class Mover : MonoBehaviour
         this.jumpPower = jumpPower;
     }
 
-    protected virtual void Jump()
+    protected virtual bool Jump()
     {
-        Rigid.velocity = new Vector3(Rigid.velocity.x, jumpPower);
+        if (CheckIsGround())
+        {
+            Rigid.velocity = new Vector3(Rigid.velocity.x, jumpPower);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

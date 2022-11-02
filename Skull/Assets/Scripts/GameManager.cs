@@ -37,14 +37,8 @@ public class GameManager : MonoBehaviour
         private set;
     }
 
-    bool startCount = false;
     void Start()
     {
-        if (!startCount)
-        {
-            return;
-        }
-        startCount = true;
         Gold = 0;
         for (int i = 1; i < maps.Length; i++)
         {
@@ -73,17 +67,6 @@ public class GameManager : MonoBehaviour
         inputSys = GetComponent<PlayerInput>();
         spawnPoint = GameObject.Find("Spawn Point").transform.position;
         player.transform.position = spawnPoint;
-
-        PlayerPrefs.SetFloat("PlayerHp", 3);
-        PlayerPrefs.SetFloat("PlayerDamage", 3);
-        PlayerPrefs.SetFloat("PlayerMoveSpeed", 1);
-        PlayerPrefs.SetFloat("PlayerAttackDelay", 3);
-        PlayerPrefs.SetFloat("PlayerMana", 3);
-        PlayerPrefs.SetFloat("PlayerLuck", 3);
-
-        Debug.Log("gameManager start");
-        player.GetComponent<PlayerStatManger>().InitStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"), PlayerPrefs.GetFloat("PlayerMana"), PlayerPrefs.GetFloat("PlayerLuck"));
-        player.GetComponent<PlayerStatManger>().StatUp(Stat.hp, 0.1f);
     }
 
     // Update is called once per frame

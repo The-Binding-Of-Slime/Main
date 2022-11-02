@@ -40,15 +40,17 @@ public class PlayerStatManger : MonoBehaviour
     bool startCount = false;
     void Start()
     {
-        if (!startCount)
+        /*if (!startCount)
         {
+            Debug.Log("¿€µø");
             return;
         }
-        startCount = true;
+        startCount = true;*/
         control = GetComponent<PlayerControl>();
         attacker = GetComponent<Attacker>();
         victim = GetComponent<Victim>();
-        RefreshStat();
+        Freference();
+        //RefreshStat();
     }
 
     public void InitStat(float attack, float hp, float speed, float Delay, float mana, float luck)
@@ -64,7 +66,7 @@ public class PlayerStatManger : MonoBehaviour
 
     void RefreshStat()
     {
-        Debug.Log(victim);
+        if (victim == null) return;
         victim.maxHp = originHp * statHp;
         attacker.damage = originDamage * statDamage;
         control.SetSpeed(originMoveSpeed * statSpeed, 6);
@@ -102,5 +104,17 @@ public class PlayerStatManger : MonoBehaviour
         RefreshStat();
     }
 
-    
+    void Freference()
+    {
+        /*PlayerPrefs.SetFloat("PlayerHp", 3);
+        PlayerPrefs.SetFloat("PlayerDamage", 3);
+        PlayerPrefs.SetFloat("PlayerMoveSpeed", 3);
+        PlayerPrefs.SetFloat("PlayerAttackDelay", 3);
+        PlayerPrefs.SetFloat("PlayerMana", 3);
+        PlayerPrefs.SetFloat("PlayerLuck", 3);*/
+
+        //InitStat(PlayerPrefs.GetFloat("PlayerHp"), PlayerPrefs.GetFloat("PlayerDamage"), PlayerPrefs.GetFloat("PlayerMoveSpeed"), PlayerPrefs.GetFloat("PlayerAttackDelay"), PlayerPrefs.GetFloat("PlayerMana"), PlayerPrefs.GetFloat("PlayerLuck"));
+        InitStat(3, 3, 3, 3, 3, 3);
+        RefreshStat();
+    }
 }
