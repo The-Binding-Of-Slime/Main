@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MonsterAI : MonoBehaviour
+public class MonsterAI : Mover
 {
     [SerializeField]GameObject target;
     float findRange = 6;
@@ -12,21 +12,21 @@ public class MonsterAI : MonoBehaviour
 
     Animator animator;
     SpriteRenderer render;
-    Mover mover;
     Attacker attacker;
 
-    protected void Start()
+    protected override void Start()
     {
+        base.Start();
         animator = GetComponent<Animator>();
         render = GetComponent<SpriteRenderer>();
-        mover = GetComponent<Mover>();
         attacker = GetComponent<Attacker>();
-        mover.SetSpeed(1, 1);
+        SetSpeed(1, 1);
     }
 
     
     void Update()
     {
+
         if(target == null)
         {
             FindTarget();
@@ -46,19 +46,33 @@ public class MonsterAI : MonoBehaviour
         
         if (isFind)
         {
+            if (attacker.AttackTimer > 0) {
+                animator.SetBool("isRunning", false);
+                return;
+            }
+            animator.SetBool("isRunning", true);
             if (isRightRayHit && transform.position.x > target.transform.position.x)
             {
-                mover.Move(-0.5f);
+                Move(-0.5f);
+                render.flipX = true;
             }
             else if(isLeftRayHit && transform.position.x < target.transform.position.x)
             {
-                mover.Move(0.5f);
+                Move(0.5f);
+                render.flipX = false;
             }
             if(distance < 2)
             {
-                
+                attacker.useAttack();
             }
         }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
+
+
+        animator.SetBool("isGround", CheckIsGround());
     }
 
     void FindTarget()
