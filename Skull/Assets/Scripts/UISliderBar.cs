@@ -31,7 +31,6 @@ public class UISliderBar : MonoBehaviour
         if (slider != null)
         {
             slider.value = value / maxValue;
-            slider.maxValue = maxValue;
         }
         if (text != null)
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 //체력, 피격관련 클래스
 public class Victim : MonoBehaviour
 {
+    PlayerUiManager uiManager;
     public float maxHp;
 
     private float hp;
@@ -30,6 +31,8 @@ public class Victim : MonoBehaviour
     void Start()
     {
         hp = maxHp;
+        uiManager = FindObjectOfType<PlayerUiManager>();
+        uiManager.hpUiSet(Hp, maxHp);
     }
 
     public virtual void TakeDamage(float damage)
@@ -42,6 +45,7 @@ public class Victim : MonoBehaviour
         {
             Die();
         }
+        uiManager.hpUiSet(Hp, maxHp);
     }
 
     public virtual void TakeHeal(float heal)
@@ -50,6 +54,7 @@ public class Victim : MonoBehaviour
         {
             Hp += heal;
         }
+        uiManager.hpUiSet(Hp, maxHp);
     }
 
     void Die()

@@ -68,11 +68,9 @@ public class PlayerStatManger : MonoBehaviour
     {
         if (victim == null) return;
         victim.maxHp = originHp * statHp;
-        attacker.damage = originDamage * statDamage;
         control.SetSpeed(originMoveSpeed * statSpeed, 6);
-        attacker.attackDelay = originAttackDelay * statAttackDelay;
-        attacker.skillDelay = originAttackDelay * statAttackDelay;
         attacker.mana = originMana * statMana;
+        attacker.SetStat(originDamage * statDamage, originAttackDelay * statAttackDelay, originAttackDelay * statAttackDelay);
         
         luck = originLuck * statLuck;
         //Debug.Log("HP : " + maxHp + ", Damage : " + damage + ", speed : " + moveSpeed + ", Delay : " + attackDelay);

@@ -8,10 +8,10 @@ using UnityEngine;
 //구현은 공격 오브젝트 프리팹에서
 public class Attacker : MonoBehaviour
 {
-    public GameObject attack;
-    public GameObject skill;
-    public float attackDelay;
-    public float skillDelay;
+    [SerializeField] GameObject attack;
+    [SerializeField] GameObject skill;
+    [SerializeField]float attackDelay;
+    [SerializeField]float skillDelay;
     public float damage = 1;
     public float attackDamage;
     public float skillDamage;
@@ -19,9 +19,19 @@ public class Attacker : MonoBehaviour
     public float mana = 0;
 
     float attackTimer;
+    public float AttackTimer
+    {
+        get { return attackTimer; }
+        private set { attackTimer = value; }
+    }
     float skillTimer;
+    public float SkillTimer
+    {
+        get { return skillTimer; }
+        private set { skillTimer = value; }
+    }
 
-    void Start()
+    protected virtual void Start()
     {
         
     }
@@ -33,31 +43,37 @@ public class Attacker : MonoBehaviour
         skillTimer -= Time.deltaTime;
     }
 
-    protected void useAttack()
+    public virtual bool useAttack()
     {
-        if (attackTimer <= 0f)
+        if (attackTimer > 0f)
         {
-            attackTimer = attackDelay;
-            GameObject attackObject = Instantiate(attack, transform.position, transform.rotation);
-            attackObject.GetComponent<DamageSkill>().set(damage * attackDamage,false);
+            return false;
         }
+        attackTimer = attackDelay;
+        if (attack != null)
+        {
+            GameObject attackObject = Instantiate(attack, transform.position, transform.rotation);
+            attackObject.GetComponent<DamageSkill>().set(damage * attackDamage, false);
+        }
+        return true;
     }
 
-    protected void useSkill()
+    public virtual void useSkill()
     {
-        if(skillMana > mana)
+        if(skillMana > mana || skillTimer > 0)
         {
             return;
         }
-        else
-        {
-            mana -= skillMana;
-        }
-        if (skillTimer <= 0f)
-        {
-            skillTimer = skillDelay;
-            GameObject skillObject = Instantiate(skill, transform.position, transform.rotation);
-            skillObject.GetComponent<DamageSkill>().set(damage * attackDamage, false);
-        }
+        mana -= skillMana;
+        skillTimer = skillDelay;
+        GameObject skillObject = Instantiate(skill, transform.position, transform.rotation);
+        skillObject.GetComponent<DamageSkill>().set(damage * skillDamage, false);
+    }
+
+    public void SetStat(float damage,float attackDelay,float skillDelay)
+    {
+        this.damage = damage;
+        this.attackDelay = attackDelay;
+        this.skillDelay = skillDelay;
     }
 }
