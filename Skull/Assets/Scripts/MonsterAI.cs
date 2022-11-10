@@ -6,9 +6,9 @@ using UnityEngine;
 public class MonsterAI : Mover
 {
     [SerializeField]GameObject target;
-    float findRange = 6;
-    float lostRange = 8;
-    bool isFind;
+    float findRange = 4;
+    float lostRange = 12;
+    [SerializeField]bool isFind;
 
     Animator animator;
     SpriteRenderer render;
@@ -36,13 +36,13 @@ public class MonsterAI : Mover
         if (!isFind && findRange >= distance)
         {
             isFind = true;
-        }else if(isFind && lostRange >= distance)
+        }else if(isFind && lostRange <= distance)
         {
             isFind=false;
         }
 
-        bool isLeftRayHit = Physics2D.Raycast(transform.position + transform.localScale.x / 2 * new Vector3(1, -2, 0), Vector2.down, 1f).collider != null;
-        bool isRightRayHit = Physics2D.Raycast(transform.position + transform.localScale.x / 2 * new Vector3(-1, -2, 0), Vector2.down,1f).collider != null;
+        bool isLeftRayHit = Physics2D.Raycast(transform.position + transform.localScale.x * new Vector3(1, -2, 0), Vector2.down, 1f).collider != null;
+        bool isRightRayHit = Physics2D.Raycast(transform.position + transform.localScale.x * new Vector3(-1, -2, 0), Vector2.down,1f).collider != null;
         
         if (isFind)
         {
