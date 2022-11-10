@@ -35,6 +35,7 @@ public class PlayerStatManger : MonoBehaviour
     float statMana = 1;
     float statLuck = 1;
 
+    [SerializeField]
     float luck;
 
     bool startCount = false;
