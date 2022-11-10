@@ -24,7 +24,7 @@ public class ItemUse : MonoBehaviour
             manager.StatUp(Stat.hp, itemData.hp);
             manager.StatUp(Stat.damage, itemData.damage);
             manager.StatUp(Stat.moveSpeed, itemData.moveSpeed);
-            manager.StatUp(Stat.attackDelay, itemData.attackDelay);
+            manager.StatUp(Stat.mana, itemData.mana);
             manager.StatUp(Stat.luck, itemData.luck);
 
             collision.gameObject.SetActive(false);

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00fb697676337f940ae80db4b3390676, type: 3}
-  m_Name: Acid Bottle
+  m_Name: Mana Bottle
   m_EditorClassIdentifier: 
   ItemData:
-    ItemID: "\uC0B0\uC131\uC561"
+    ItemID: "\uB9C8\uB098\uC2DC\uC57D"
     gameObject: {fileID: 1556509175879938330, guid: 59c5347e5996be1418c9d7226bb77a36, type: 3}
     hp: 0
-    damage: 5
+    damage: 0
     moveSpeed: 0
-    attackDelay: 0
+    mana: 0.5
     luck: 0

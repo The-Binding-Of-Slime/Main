@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
+    [SerializeField]
     protected float maxSpeed = 5;
+    [SerializeField]
     protected float moveSpeed = 5;
+    [SerializeField]
     protected float jumpPower = 7;
     protected Rigidbody2D Rigid { get; private set; }
 

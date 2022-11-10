@@ -8,10 +8,10 @@ public class ItemData
 {
     public string ItemID;
     public GameObject gameObject;
-    public int hp;
-    public int damage;
+    public float hp;
+    public float damage;
     public float moveSpeed;
-    public float attackDelay;
+    public float mana;
     public float luck;
 }
 public class ItemDB : MonoBehaviour

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8161132173785476537}
   - component: {fileID: -5071173816903555737}
   m_Layer: 0
-  m_Name: Acid Bottle
+  m_Name: Mana Bottle
   m_TagString: ShopItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5743871294c1cb941ace837711f705fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: "\uC0B0\uC131\uC561"
+  itemName: "\uB9C8\uB098\uC2DC\uC57D"
 --- !u!114 &8161132173785476537
 MonoBehaviour:
   m_ObjectHideFlags: 0
