@@ -16,7 +16,7 @@ MonoBehaviour:
     ItemID: "\uB808\uB4DC\uBD88"
     gameObject: {fileID: 5276925156747746934, guid: 2f5e12d4b9f447d41a88b42de5661b4d, type: 3}
     hp: 0
-    damage: 0
+    damage: 0.5
     moveSpeed: 0
-    attackDelay: 5
+    mana: 0
     luck: 0
