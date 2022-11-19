@@ -26,7 +26,7 @@ public class MonsterAI : Mover
     
     void Update()
     {
-
+        Debug.Log(attacker.AttackTimer);
         if(target == null)
         {
             FindTarget();

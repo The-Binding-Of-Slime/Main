@@ -9,6 +9,7 @@ public class MonsterAttacker : RangeAttacker
 
     protected override void Start()
     {
+        base.Start();
         animator = GetComponent<Animator>();
     }
 
@@ -17,4 +18,6 @@ public class MonsterAttacker : RangeAttacker
         base.UseAttack();
         animator.SetTrigger("SleepSkill");
     }
+
+
 }

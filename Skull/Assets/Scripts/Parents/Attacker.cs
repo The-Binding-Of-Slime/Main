@@ -26,7 +26,6 @@ public class Attacker : MonoBehaviour, Attack
 
     public virtual void UseAttack()
     {
-        Debug.Log(attackTimer);
         if (attackTimer > 0f)
         {
             return;
