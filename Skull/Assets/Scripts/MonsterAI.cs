@@ -6,20 +6,20 @@ using UnityEngine;
 public class MonsterAI : Mover
 {
     [SerializeField]GameObject target;
-    float findRange = 4;
+    float findRange = 8;
     float lostRange = 12;
     [SerializeField]bool isFind;
 
     Animator animator;
     SpriteRenderer render;
-    Attacker attacker;
+    RangeAttacker attacker;
 
     protected override void Start()
     {
         base.Start();
         animator = GetComponent<Animator>();
         render = GetComponent<SpriteRenderer>();
-        attacker = GetComponent<Attacker>();
+        attacker = GetComponent<RangeAttacker>();
         SetSpeed(1, 1);
     }
 
@@ -61,17 +61,15 @@ public class MonsterAI : Mover
                 Move(0.5f);
                 render.flipX = false;
             }
-            if(distance < 2)
+            if(distance < 4)
             {
-                attacker.useAttack();
+                attacker.UseAttack();
             }
         }
         else
         {
             animator.SetBool("isRunning", false);
         }
-
-
         animator.SetBool("isGround", CheckIsGround());
     }
 

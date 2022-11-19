@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MonsterAttacker : Attacker
+public class MonsterAttacker : RangeAttacker
 {
     Animator animator;
 
@@ -12,16 +12,9 @@ public class MonsterAttacker : Attacker
         animator = GetComponent<Animator>();
     }
 
-    public override bool useAttack()
+    public override void UseAttack()
     {
-        if (base.useAttack())
-        {
-            animator.SetTrigger("SleepSkill");
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        base.UseAttack();
+        animator.SetTrigger("SleepSkill");
     }
 }

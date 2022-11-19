@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mover : MonoBehaviour
+public class Mover : MonoBehaviour,Stunable
 {
     [SerializeField]
     protected float maxSpeed = 5;
@@ -11,15 +11,21 @@ public class Mover : MonoBehaviour
     [SerializeField]
     protected float jumpPower = 7;
     protected Rigidbody2D Rigid { get; private set; }
+    //float timer = 0f;
 
     protected virtual void Start()
     {
         Rigid = GetComponent<Rigidbody2D>();
     }
 
+    void Update()
+    {
+        //timer -= Time.deltaTime;
+    }
+
     public void Move(float speed)
     {
-        if(Mathf.Abs(Rigid.velocity.x) <= maxSpeed)
+        if(Mathf.Abs(Rigid.velocity.x) <= maxSpeed/* && timer <= 0f*/)
         {
             Rigid.AddForce(30 * moveSpeed * speed * Vector3.right);
         }
@@ -53,5 +59,10 @@ public class Mover : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void Stun(float time)
+    {
+        //timer = time;
     }
 }
