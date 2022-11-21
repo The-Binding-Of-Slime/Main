@@ -7,6 +7,7 @@ public class Attacker : MonoBehaviour, Attack
     [SerializeField]protected float attackDelay;
     public float attackDamage;
     float attackTimer;
+
     public float AttackTimer
     {
         get { return attackTimer; }
