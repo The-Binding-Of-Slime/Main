@@ -16,7 +16,7 @@ public enum Stat
 public class PlayerStatManger : MonoBehaviour
 {
     PlayerControl control;
-    Attacker attacker;
+    RangeAttacker attacker;
     Victim victim;
 
     //게임이 끝나도 저장되는 스탯
@@ -48,7 +48,7 @@ public class PlayerStatManger : MonoBehaviour
         }
         startCount = true;*/
         control = GetComponent<PlayerControl>();
-        attacker = GetComponent<Attacker>();
+        attacker = GetComponent<RangeAttacker>();
         victim = GetComponent<Victim>();
         Freference();
         //RefreshStat();

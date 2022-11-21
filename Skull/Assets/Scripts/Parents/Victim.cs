@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //체력, 피격관련 클래스
-public class Victim : MonoBehaviour
+public class Victim : MonoBehaviour,Hitable
 {
     PlayerUiManager uiManager;
     public float maxHp;
@@ -35,7 +35,7 @@ public class Victim : MonoBehaviour
         uiManager.hpUiSet(Hp, maxHp);
     }
 
-    public virtual void TakeDamage(float damage)
+    public virtual float TakeDamage(float damage)
     {
         if (damage >= 0)
         {
@@ -46,15 +46,17 @@ public class Victim : MonoBehaviour
             Die();
         }
         uiManager.hpUiSet(Hp, maxHp);
+        return damage;
     }
 
-    public virtual void TakeHeal(float heal)
+    public virtual float TakeHeal(float heal)
     {
         if(heal > 0)
         {
             Hp += heal;
         }
         uiManager.hpUiSet(Hp, maxHp);
+        return heal;
     }
 
     void Die()

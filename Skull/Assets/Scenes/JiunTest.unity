@@ -543,7 +543,6 @@ GameObject:
   - component: {fileID: 1451732337}
   - component: {fileID: 1451732335}
   - component: {fileID: 1451732333}
-  - component: {fileID: 1451732343}
   - component: {fileID: 1451732344}
   m_Layer: 0
   m_Name: Monster
@@ -564,7 +563,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d5e02d5d0e2cf049a640d08761ff572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 5
+  moveSpeed: 5
+  jumpPower: 7
   target: {fileID: 0}
+  isFind: 0
 --- !u!114 &1451732335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,18 +720,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1451732343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451732332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cae3c0665178ac4291ca366bce9b565, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1451732344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,12 +732,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3407f75a0e3cc429fdc05e69d1996f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDelay: 1
+  attackDamage: 1
   attack: {fileID: 0}
   skill: {fileID: 0}
-  attackDelay: 1
   skillDelay: 1
   damage: 1
-  attackDamage: 0
   skillDamage: 0
   skillMana: 0
   mana: 0
@@ -927,12 +918,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab66e651dbdead54ea6b1bf0c2971659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDelay: 0
+  attackDamage: 0
   attack: {fileID: 0}
   skill: {fileID: 0}
-  attackDelay: 0
   skillDelay: 0
   damage: 1
-  attackDamage: 0
   skillDamage: 0
   skillMana: 0
   mana: 0
@@ -961,6 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae29e2317896b94183992336f0719af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  luck: 0
 --- !u!114 &2086573737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,6 +965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7532fa41b2e4db840b08a86992ad49a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 5
+  moveSpeed: 5
+  jumpPower: 7
 --- !u!1 &2133104641
 GameObject:
   m_ObjectHideFlags: 0
