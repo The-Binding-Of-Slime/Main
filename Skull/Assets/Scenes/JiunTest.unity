@@ -566,8 +566,14 @@ MonoBehaviour:
   maxSpeed: 5
   moveSpeed: 5
   jumpPower: 7
+  <Rigid>k__BackingField: {fileID: 0}
   target: {fileID: 0}
+  findRange: 8
+  lostRange: 12
   isFind: 0
+  animator: {fileID: 0}
+  render: {fileID: 0}
+  attacker: {fileID: 0}
 --- !u!114 &1451732335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,7 +586,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efdf0121b3717384fa539c085299eebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
   maxHp: 100
+  hp: 0
 --- !u!212 &1451732337
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -734,6 +742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDelay: 1
   attackDamage: 1
+  attackTimer: 0
   attack: {fileID: 0}
   skill: {fileID: 0}
   skillDelay: 1
@@ -741,6 +750,8 @@ MonoBehaviour:
   skillDamage: 0
   skillMana: 0
   mana: 0
+  skillTimer: 0
+  animator: {fileID: 0}
 --- !u!1 &2086573726
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,6 +931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDelay: 0
   attackDamage: 0
+  attackTimer: 0
   attack: {fileID: 0}
   skill: {fileID: 0}
   skillDelay: 0
@@ -927,6 +939,7 @@ MonoBehaviour:
   skillDamage: 0
   skillMana: 0
   mana: 0
+  skillTimer: 0
 --- !u!114 &2086573735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,7 +952,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efdf0121b3717384fa539c085299eebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
   maxHp: 100
+  hp: 0
 --- !u!114 &2086573736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -952,7 +967,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae29e2317896b94183992336f0719af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  control: {fileID: 0}
+  attacker: {fileID: 0}
+  victim: {fileID: 0}
+  originHp: 0
+  originDamage: 0
+  originMoveSpeed: 1
+  originAttackDelay: 0
+  originMana: 0
+  originLuck: 0
+  statDamage: 1
+  statHp: 1
+  statSpeed: 1
+  statAttackDelay: 1
+  statMana: 1
+  statLuck: 1
   luck: 0
+  startCount: 0
 --- !u!114 &2086573737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,6 +999,11 @@ MonoBehaviour:
   maxSpeed: 5
   moveSpeed: 5
   jumpPower: 7
+  <Rigid>k__BackingField: {fileID: 0}
+  inputSys: {fileID: 0}
+  animator: {fileID: 0}
+  render: {fileID: 0}
+  spinGauge: 0
 --- !u!1 &2133104641
 GameObject:
   m_ObjectHideFlags: 0
