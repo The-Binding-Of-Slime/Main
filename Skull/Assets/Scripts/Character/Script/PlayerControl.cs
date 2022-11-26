@@ -12,7 +12,7 @@ public class PlayerControl : Controller
     {
         base.Start();
         inputSys = FindObjectOfType<InputSystem>();
-        attack = FindObjectOfType<Attacker>();
+        attack = GetComponent<Attacker>();
     }
 
     protected override void Update()

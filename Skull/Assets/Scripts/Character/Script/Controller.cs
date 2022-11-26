@@ -29,29 +29,38 @@ public class Controller : MonoBehaviour
 
     protected virtual void Move(float direction)
     {
-        isRunFrameCount = true;
-        mover.Move(direction);
-        if(direction > 0)
+        if (mover != null)
         {
-            render.flipX = false;
-        }
-        else
-        {
-            render.flipX = true;
+            isRunFrameCount = true;
+            mover.Move(direction);
+            if (direction > 0)
+            {
+                render.flipX = false;
+            }
+            else
+            {
+                render.flipX = true;
+            }
         }
     }
 
     protected virtual void UseAttack(int index)
     {
-        if (animator != null)
+        if (attacker != null)
         {
-            animator.SetTrigger("useAttack");
+            if (animator != null)
+            {
+                animator.SetTrigger("useAttack");
+            }
+            attacker.UseAttack(index);
         }
-        attacker.UseAttack(index);
     }
 
     protected virtual void Jump()
     {
-        mover.Jump();
+        if (mover != null)
+        {
+            mover.Jump();
+        }
     }
 }
