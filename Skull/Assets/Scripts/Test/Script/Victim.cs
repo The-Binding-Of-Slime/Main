@@ -23,6 +23,10 @@ public class Victim : MonoBehaviour
     public void TakeDamage(float damage)
     {
         hp -= damage;
+        if(hp <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void TakeHeal(float heal)

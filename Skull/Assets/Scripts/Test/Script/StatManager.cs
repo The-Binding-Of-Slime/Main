@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class StatManager : MonoBehaviour
 {
-    private CharacterData characterData;
+    [SerializeField]private CharacterData characterData;
     public CharacterData CharacterData
     {
         get { return characterData; }
@@ -15,7 +15,7 @@ public class StatManager : MonoBehaviour
 
     protected virtual void Start()
     {
-
+        buffList = new float[System.Enum.GetValues(typeof(Buff)).Length];
     }
 
     protected virtual void Update()

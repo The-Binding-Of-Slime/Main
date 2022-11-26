@@ -11,6 +11,7 @@ public class PlayerStatManager : StatManager
     {
         base.Start();
         savedStatManager = GetComponent<SavedStatManager>();
+        playerStat = new float[System.Enum.GetValues(typeof(PlayerStat)).Length];
         for (int i = 0; i < System.Enum.GetValues(typeof(PlayerStat)).Length; i++)
         {
             playerStat[i] = 1f;

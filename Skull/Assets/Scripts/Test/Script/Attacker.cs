@@ -6,7 +6,7 @@ using UnityEngine;
 public class Attacker : MonoBehaviour
 {
     StatManager statManager;
-    [SerializeField] AttackData[] attackDatas;
+    AttackData[] attackDatas;
     float mana;
     float[] coolTime;
 
@@ -31,7 +31,9 @@ public class Attacker : MonoBehaviour
     {
         if (coolTime[index] <= 0)
         {
-            Instantiate(attackDatas[index], transform.position, transform.rotation).GetComponent<HitBox>().damage = attackDatas[index].Damage * statManager.GetStat(PlayerStat.Damage);
+            GameObject prefab = Instantiate(attackDatas[index].AttackFrefab, transform.position, transform.rotation);
+            prefab.GetComponent<HitBox>().damage = attackDatas[index].Damage * statManager.GetStat(PlayerStat.Damage);
+            prefab.tag = transform.tag;
             coolTime[index] = attackDatas[index].CoolTime;
         }
     }

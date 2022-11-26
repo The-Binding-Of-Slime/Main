@@ -15,7 +15,7 @@ public class Mover : MonoBehaviour
 
     public virtual void Move(float direction)
     {
-        rigid.velocity = Vector2.right * direction * statManager.GetStat(PlayerStat.MoveSpeed);
+        rigid.velocity = new Vector2(direction * statManager.GetStat(PlayerStat.MoveSpeed),rigid.velocity.y);
     }
 
     public void Jump()
