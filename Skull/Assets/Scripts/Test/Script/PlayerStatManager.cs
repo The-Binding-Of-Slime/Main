@@ -7,9 +7,9 @@ public class PlayerStatManager : StatManager
     float[] playerStat;
     SavedStatManager savedStatManager;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         savedStatManager = GetComponent<SavedStatManager>();
         playerStat = new float[System.Enum.GetValues(typeof(PlayerStat)).Length];
         for (int i = 0; i < System.Enum.GetValues(typeof(PlayerStat)).Length; i++)

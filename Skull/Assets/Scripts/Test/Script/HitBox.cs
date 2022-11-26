@@ -9,7 +9,7 @@ public class HitBox : MonoBehaviour
 
     void Start()
     {
-        
+        StartCoroutine(Timer());
     }
 
     // Update is called once per frame
@@ -20,9 +20,15 @@ public class HitBox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag(transform.tag))
+        if (!collision.CompareTag(transform.tag) && collision.gameObject.GetComponent<Victim>() != null)
         {
             collision.gameObject.GetComponent<Victim>().TakeDamage(damage);
         }
+    }
+
+    IEnumerator Timer()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
     }
 }

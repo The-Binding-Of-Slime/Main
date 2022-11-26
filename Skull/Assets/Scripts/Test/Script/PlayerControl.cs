@@ -6,13 +6,13 @@ public class PlayerControl : Controller
 {
     InputSystem inputSys;
     float attackTimer;
-    Attacker attacker;
+    Attacker attack;
 
     protected override void Start()
     {
         base.Start();
         inputSys = FindObjectOfType<InputSystem>();
-        attacker = FindObjectOfType<Attacker>();
+        attack = FindObjectOfType<Attacker>();
     }
 
     protected override void Update()
@@ -32,13 +32,13 @@ public class PlayerControl : Controller
             if(attackTimer <= 0)
             {
                 UseAttack(0);
-                attackTimer = 0.25f;
+                attackTimer = 0.1f;
             }
         }
     }
 
     protected override void UseAttack(int index)
     {
-        attacker.UseAttack(index);
+        attack.UseAttack(index);
     }
 }

@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class SavedStatManager : MonoBehaviour
 {
-    public void ClearStat()
+    private void Start()
     {
-        PlayerPrefs.SetFloat("PlayerHp", 1);
-        PlayerPrefs.SetFloat("PlayerDamage", 1);
-        PlayerPrefs.SetFloat("PlayerMoveSpeed", 1);
-        PlayerPrefs.SetFloat("PlayerAttackSpeed", 1);
-        PlayerPrefs.SetFloat("PlayerLuck", 1);
+        //ClearStat();
+    }
+
+    private void ClearStat()
+    {
+        PlayerPrefs.SetFloat("PlayerHp", 0);
+        PlayerPrefs.SetFloat("PlayerDamage", 0);
+        PlayerPrefs.SetFloat("PlayerMoveSpeed", 0);
+        PlayerPrefs.SetFloat("PlayerAttackSpeed", 0);
+        PlayerPrefs.SetFloat("PlayerLuck", 0);
     }
 
     public void AddStat(PlayerStat stat,float value)

@@ -18,6 +18,7 @@ public class Victim : MonoBehaviour
     private void Start()
     {
         statManager = GetComponent<StatManager>();
+        hp = statManager.GetStat(PlayerStat.Hp);
     }
 
     public void TakeDamage(float damage)
@@ -25,7 +26,7 @@ public class Victim : MonoBehaviour
         hp -= damage;
         if(hp <= 0)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 

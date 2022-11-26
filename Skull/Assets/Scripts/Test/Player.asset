@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   characterName: "\uC2AC\uB77C\uC784"
-  maxHp: 100
-  moveSpeed: 1
+  maxHp: 10
+  moveSpeed: 3
   attackData:
   - {fileID: 11400000, guid: 8d1ccdc3c43c5b741922e116e9f1446c, type: 2}
   maxMana: 100
