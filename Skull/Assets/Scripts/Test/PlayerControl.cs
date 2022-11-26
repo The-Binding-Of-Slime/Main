@@ -2,17 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : Controller
 {
-    // Start is called before the first frame update
-    void Start()
+    InputSystem inputSys;
+    float attackTimer;
+
+    protected override void Start()
     {
-        
+        inputSys = FindObjectOfType<InputSystem>();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-        
+        attackTimer -= Time.deltaTime;
+        if(inputSys != null)
+        {
+            if (inputSys.GetHorDown)
+            {
+                Move(inputSys.Hor);
+            }
+            if (inputSys.GetJumpDown)
+            {
+                Jump();
+            }
+            if(attackTimer <= 0)
+            {
+                UseAttack(0);
+                attackTimer = 0.25f;
+            }
+        }
     }
 }

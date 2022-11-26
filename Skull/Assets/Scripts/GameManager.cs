@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject PauseMenu;
     [Header("-레벨별 필요EXP(누적X)")]
     public float[] MaxExp;
-    PlayerInput inputSys;
+    InputSystem inputSys;
     float blackCanvasAlpha;
     bool isEnter = false;
     GameObject player;
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         }
 
         player = FindObjectOfType<PlayerControl>().gameObject;
-        inputSys = GetComponent<PlayerInput>();
+        inputSys = GetComponent<InputSystem>();
         spawnPoint = GameObject.Find("Spawn Point").transform.position;
         player.transform.position = spawnPoint;
     }

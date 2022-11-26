@@ -4,7 +4,7 @@ using UnityEngine;
 
 //입력관련 담당
 //PlayerControl에서 참조하는 클래스
-public class PlayerInput : MonoBehaviour
+public class InputSystem : MonoBehaviour
 {
     public KeyCode jumpKey;
     public KeyCode interactionKey;

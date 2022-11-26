@@ -29,22 +29,6 @@ public class AttackData : ScriptableObject
 
 
     [SerializeField]
-    private float frontDelay;
-    public float FrontDelay
-    {
-        get { return frontDelay; }
-    }
-
-
-    [SerializeField]
-    private float backDelay;
-    public float BackDelay
-    {
-        get { return backDelay; }
-    }
-
-
-    [SerializeField]
     private float coolTime;
     public float CoolTime
     {

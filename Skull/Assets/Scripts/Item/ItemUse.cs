@@ -16,7 +16,7 @@ public class ItemUse : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ShopItem") && FindObjectOfType<PlayerInput>().GetInteractionStay)
+        if (collision.gameObject.CompareTag("ShopItem") && FindObjectOfType<InputSystem>().GetInteractionStay)
         {
 
             ItemData itemData = itemDB.itemDictionary[collision.gameObject.GetComponent<ItemName>().itemName];

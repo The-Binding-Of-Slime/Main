@@ -31,13 +31,13 @@ public class PlayerStatManager : StatManager
                 value = CharacterData.MaxHp;
                 break;
             case PlayerStat.Damage:
-                value = CharacterData.AttackData.Damage;
+                value = 1;
                 break;
             case PlayerStat.MoveSpeed:
                 value = CharacterData.MoveSpeed;
                 break;
             case PlayerStat.AttackSpeed:
-                value = CharacterData.AttackData.CoolTime;
+                value = 1;
                 break;
             case PlayerStat.Luck:
                 value = 1;

@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    protected Rigidbody rigid;
+    protected Rigidbody2D rigid;
     protected StatManager statManager;
 
     protected virtual void Start()
     {
-        rigid = GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody2D>();
         statManager = GetComponent<StatManager>();
     }
 
-    public virtual void Move(float dirction)
+    public virtual void Move(float direction)
     {
-        rigid.AddForce(Vector2.right * dirction * statManager.GetStat(PlayerStat.MoveSpeed));
+        rigid.velocity = Vector2.right * direction * statManager.GetStat(PlayerStat.MoveSpeed);
+    }
+
+    public void Jump()
+    {
+        rigid.velocity = new Vector2(rigid.velocity.x, 7);
     }
 }

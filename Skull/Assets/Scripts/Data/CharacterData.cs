@@ -32,8 +32,8 @@ public class CharacterData : ScriptableObject
 
 
     [SerializeField]
-    private AttackData attackData;
-    public AttackData AttackData 
+    private AttackData[] attackData;
+    public AttackData[] AttackData 
     {
         get { return attackData; }
     }
