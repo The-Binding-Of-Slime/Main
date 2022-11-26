@@ -541,9 +541,6 @@ GameObject:
   - component: {fileID: 1451732339}
   - component: {fileID: 1451732338}
   - component: {fileID: 1451732337}
-  - component: {fileID: 1451732335}
-  - component: {fileID: 1451732333}
-  - component: {fileID: 1451732344}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -551,44 +548,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1451732333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451732332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d5e02d5d0e2cf049a640d08761ff572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 5
-  moveSpeed: 5
-  jumpPower: 7
-  <Rigid>k__BackingField: {fileID: 0}
-  target: {fileID: 0}
-  findRange: 8
-  lostRange: 12
-  isFind: 0
-  animator: {fileID: 0}
-  render: {fileID: 0}
-  attacker: {fileID: 0}
---- !u!114 &1451732335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451732332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efdf0121b3717384fa539c085299eebd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiManager: {fileID: 0}
-  maxHp: 100
-  hp: 0
 --- !u!212 &1451732337
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -728,30 +687,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1451732344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451732332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae3407f75a0e3cc429fdc05e69d1996f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDelay: 1
-  attackDamage: 1
-  attackTimer: 0
-  attack: {fileID: 0}
-  skill: {fileID: 0}
-  skillDelay: 1
-  damage: 1
-  skillDamage: 0
-  skillMana: 0
-  mana: 0
-  skillTimer: 0
-  animator: {fileID: 0}
 --- !u!1 &2086573726
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,10 +701,6 @@ GameObject:
   - component: {fileID: 2086573729}
   - component: {fileID: 2086573728}
   - component: {fileID: 2086573727}
-  - component: {fileID: 2086573737}
-  - component: {fileID: 2086573736}
-  - component: {fileID: 2086573735}
-  - component: {fileID: 2086573734}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -917,93 +848,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2086573734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086573726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab66e651dbdead54ea6b1bf0c2971659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDelay: 0
-  attackDamage: 0
-  attackTimer: 0
-  attack: {fileID: 0}
-  skill: {fileID: 0}
-  skillDelay: 0
-  damage: 1
-  skillDamage: 0
-  skillMana: 0
-  mana: 0
-  skillTimer: 0
---- !u!114 &2086573735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086573726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efdf0121b3717384fa539c085299eebd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiManager: {fileID: 0}
-  maxHp: 100
-  hp: 0
---- !u!114 &2086573736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086573726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ae29e2317896b94183992336f0719af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  control: {fileID: 0}
-  attacker: {fileID: 0}
-  victim: {fileID: 0}
-  originHp: 0
-  originDamage: 0
-  originMoveSpeed: 1
-  originAttackDelay: 0
-  originMana: 0
-  originLuck: 0
-  statDamage: 1
-  statHp: 1
-  statSpeed: 1
-  statAttackDelay: 1
-  statMana: 1
-  statLuck: 1
-  luck: 0
-  startCount: 0
---- !u!114 &2086573737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086573726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7532fa41b2e4db840b08a86992ad49a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 5
-  moveSpeed: 5
-  jumpPower: 7
-  <Rigid>k__BackingField: {fileID: 0}
-  inputSys: {fileID: 0}
-  animator: {fileID: 0}
-  render: {fileID: 0}
-  spinGauge: 0
 --- !u!1 &2133104641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,9 +857,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2133104645}
-  - component: {fileID: 2133104644}
   - component: {fileID: 2133104643}
   - component: {fileID: 2133104642}
+  - component: {fileID: 2133104646}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1070,22 +914,6 @@ MonoBehaviour:
   CaveBackGround: {fileID: 0}
   PauseMenu: {fileID: 0}
   MaxExp: []
---- !u!114 &2133104644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133104641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e331dd011af014b8365f00cea9e5a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpKey: 32
-  interactionKey: 101
-  skill1Key: 102
-  skill2Key: 113
 --- !u!4 &2133104645
 Transform:
   m_ObjectHideFlags: 0
@@ -1101,6 +929,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2133104646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133104641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f4910d46548dd46bcf7cb85adb9fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpKey: 32
+  interactionKey: 101
+  skill1Key: 102
+  skill2Key: 113
 --- !u!1001 &8379755127762873967
 PrefabInstance:
   m_ObjectHideFlags: 0
