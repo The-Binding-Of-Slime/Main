@@ -35,4 +35,11 @@ public class AttackData : ScriptableObject
     {
         get { return coolTime; }
     }
+
+    [SerializeField]
+    private float spawnDelayTime;
+    public float SpawnDelayTime
+    {
+        get { return spawnDelayTime; }
+    }
 }

@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1b6adaa438d66e428ab1438a0997c84, type: 3}
-  m_Name: Attack
+  m_Name: Monster Attack
   m_EditorClassIdentifier: 
-  attackFrefab: {fileID: 3220880372856318080, guid: 8e842273b066b3144a9fa0a0144ccb01, type: 3}
+  attackFrefab: {fileID: 3220880372856318080, guid: a0a639345133c494186875e629a26621, type: 3}
   mana: 0
   damage: 1
-  coolTime: 0.1
+  coolTime: 0.75
+  spawnDelayTime: 0.35
