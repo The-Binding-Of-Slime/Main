@@ -18,17 +18,18 @@ public class Mover : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (animator != null)
+        /*if (animator != null)
         {
             animator.SetBool("isRunning", isRunFrameCount);
             isRunFrameCount = false;
-        }
+        }*/
     }
 
-    public virtual void Move(float direction)
+    public virtual bool Move(float direction)
     {
         rigid.velocity = new Vector2(direction * statManager.GetStat(PlayerStat.MoveSpeed),rigid.velocity.y);
-        isRunFrameCount = true;
+        return true;
+        //isRunFrameCount = true;
     }
 
     public void Jump()

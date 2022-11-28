@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 //슬라이더 관리용 클래스
 //캔버스에 넣어서 사용
-public class PlayerUiManager : MonoBehaviour
+public class UiManager : MonoBehaviour
 {
     public UISliderBar hpSlider;
     public UISliderBar mpSlider;

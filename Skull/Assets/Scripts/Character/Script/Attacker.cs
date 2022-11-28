@@ -9,7 +9,7 @@ public class Attacker : MonoBehaviour
 {
     StatManager statManager;
     AttackData[] attackDatas;
-    float mana;
+    public float Mana { get; private set; }
     float[] coolTime;
     Animator animator;
 
@@ -24,23 +24,24 @@ public class Attacker : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        mana = Mathf.Min(mana + Time.deltaTime, statManager.CharacterData.MaxMana);
+        Mana = Mathf.Min(Mana + Time.deltaTime, statManager.CharacterData.MaxMana);
         for (int i = 0; i < coolTime.Length; i++)
         {
             coolTime[i] -= Time.deltaTime;
         }
     }
 
-    public void UseAttack(int index)
+    public bool UseAttack(int index)
     {
         if (coolTime[index] <= 0)
         {
             StartCoroutine(SpawnAttackFrefab(index));
             coolTime[index] = attackDatas[index].CoolTime;
-            if (animator != null)
-            {
-                animator.SetTrigger("useAttack");
-            }
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

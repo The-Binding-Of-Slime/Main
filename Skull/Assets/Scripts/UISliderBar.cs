@@ -10,8 +10,7 @@ public class UISliderBar : MonoBehaviour
     public Slider slider;
     public Text text;
     public string lastText;
-    float maxValue;
-    float value;
+
     void Start()
     {
         
@@ -34,7 +33,7 @@ public class UISliderBar : MonoBehaviour
         }
         if (text != null)
         {
-            text.text = value.ToString() + " / " + maxValue.ToString() + " " + lastText;
+            text.text = ((int)value).ToString() + " / " + ((int)maxValue).ToString() + " " + lastText;
         }
     }
 
@@ -43,7 +42,7 @@ public class UISliderBar : MonoBehaviour
         this.value = value;
         if(text != null)
         {
-            text.text = value.ToString() + " " + lastText;
+            text.text = ((int)value).ToString() + " " + lastText;
         }
     }
 }
