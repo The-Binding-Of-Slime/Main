@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,11 @@ public class UISliderBar : MonoBehaviour
 {
     public Slider slider;
     public Text text;
-    public string lastText;
+    [SerializeField]string lastText;
+    float maxValue;
+    float targetValue;
+    float showValue;
+    int mode; // 0 : ²¨Áü, 1 : MaxValue ¾øÀ½, 2 : MaxValue ÀÖÀ½
 
     void Start()
     {
@@ -19,27 +24,49 @@ public class UISliderBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (mode != 0)
+        {
+            showValue = Mathf.Lerp(showValue, targetValue, Time.deltaTime * 10);
+            if(mode == 1)
+            {
+                if (text != null)
+                {
+                    text.text = ((int)showValue).ToString() + " " + lastText;
+                }
+            }else if(mode == 2)
+            {
+                if (slider != null)
+                {
+                    slider.value = showValue / maxValue;
+                }
+                if (text != null)
+                {
+                    text.text = ((int)showValue).ToString() + " / " + ((int)maxValue).ToString() + " " + lastText;
+                }
+            }
+        }
     }
 
 
     public void UiSet(float value,float maxValue)
     {
-        if (slider != null)
-        {
-            slider.value = value / maxValue;
-        }
-        if (text != null)
-        {
-            text.text = ((int)value).ToString() + " / " + ((int)maxValue).ToString() + " " + lastText;
-        }
+        this.maxValue = maxValue;
+        targetValue = value;
+        manageMoad(2);
     }
 
     public void UiSet(float value)
     {
-        if(text != null)
+        targetValue = value;
+        manageMoad(1);
+    }
+
+    void manageMoad(int mode)
+    {
+        if(this.mode == 0)
         {
-            text.text = ((int)value).ToString() + " " + lastText;
+            showValue = targetValue;
         }
+        this.mode = mode;
     }
 }
