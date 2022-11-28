@@ -25,8 +25,6 @@ public class UISliderBar : MonoBehaviour
 
     public void UiSet(float value,float maxValue)
     {
-        this.value = value;
-        this.maxValue = maxValue;
         if (slider != null)
         {
             slider.value = value / maxValue;
@@ -39,7 +37,6 @@ public class UISliderBar : MonoBehaviour
 
     public void UiSet(float value)
     {
-        this.value = value;
         if(text != null)
         {
             text.text = ((int)value).ToString() + " " + lastText;
