@@ -6,7 +6,7 @@ using UnityEngine;
 public class TrackerControl : Controller
 {
     GameObject target;
-    protected float moveMinRange = 2;
+    protected float attackRange = 2;
     protected float moveMaxRange = 7;
     protected float lostRange = 10;
     protected float Distance { private set; get; }
@@ -18,7 +18,11 @@ public class TrackerControl : Controller
         target = FindObjectOfType<PlayerControl>().gameObject;
     }
 
-   
+    protected override void Update()
+    {
+        base.Update();
+        Find();
+    }
 
     protected virtual void Tracking()
     {
@@ -28,16 +32,35 @@ public class TrackerControl : Controller
 
         if ((target.transform.position.x - transform.position.x) > 0)
         {
-            isFall = isLeftFall;
+            isFall = isRightFall;
         }
         else
         {
-            isFall = isRightFall;
+            isFall = isLeftFall;
         }
-        isFall = isRightFall || isLeftFall;
         if (!isFall)
         {
             Move((target.transform.position.x - transform.position.x) / Mathf.Abs(target.transform.position.x - transform.position.x));
+        }
+    }
+
+    protected virtual void BackTracking()
+    {
+        bool isFall = true;
+        bool isRightFall = Physics2D.Raycast(transform.position + new Vector3(transform.localScale.x, 0, 0), Vector2.down, 3).collider == null;
+        bool isLeftFall = Physics2D.Raycast(transform.position - new Vector3(transform.localScale.x, 0, 0), Vector2.down, 3).collider == null;
+
+        if ((target.transform.position.x - transform.position.x) < 0)
+        {
+            isFall = isRightFall;
+        }
+        else
+        {
+            isFall = isLeftFall;
+        }
+        if (!isFall)
+        {
+            Move(-(target.transform.position.x - transform.position.x) / Mathf.Abs(target.transform.position.x - transform.position.x));
         }
     }
 

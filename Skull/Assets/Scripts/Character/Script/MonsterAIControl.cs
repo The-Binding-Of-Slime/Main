@@ -9,13 +9,12 @@ public class MonsterAIControl : TrackerControl
     protected override void Update()
     {
         base.Update();
-        Find();
 
-        if (IsFind && Distance > moveMinRange)
+        if (IsFind && Distance > attackRange)
         {
             Tracking();
         }
-        if (IsFind && Distance <= moveMinRange)
+        if (IsFind && Distance <= attackRange)
         {
             UseAttack(0);
         }
