@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    Mover mover;
-    Attacker attacker;
-    SpriteRenderer render;
-    Animator animator;
+    protected Mover mover;
+    protected Attacker attacker;
+    protected SpriteRenderer render;
+    protected Animator animator;
+    bool isNeedFlip;
     bool isRunFrameCount;
 
     protected virtual void Start()
@@ -16,6 +17,7 @@ public class Controller : MonoBehaviour
         attacker = GetComponent<Attacker>();
         render = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        isNeedFlip = render.flipX;
     }
 
     protected virtual void Update()
@@ -35,11 +37,11 @@ public class Controller : MonoBehaviour
             mover.Move(direction);
             if (direction > 0)
             {
-                render.flipX = false;
+                render.flipX = false != isNeedFlip;
             }
             else
             {
-                render.flipX = true;
+                render.flipX = true != isNeedFlip;
             }
         }
     }
