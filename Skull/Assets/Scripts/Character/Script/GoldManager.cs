@@ -10,6 +10,7 @@ public class GoldManager : MonoBehaviour
     {
         if(gold > 0) {
             Gold += gold;
+            Debug.Log(Gold);
         }
     }
 

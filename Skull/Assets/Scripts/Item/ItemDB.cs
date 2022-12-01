@@ -13,6 +13,7 @@ public class ItemData
     public float moveSpeed;
     public float mana;
     public float luck;
+    public int gold;
 }
 public class ItemDB : MonoBehaviour
 {
@@ -25,7 +26,6 @@ public class ItemDB : MonoBehaviour
         foreach (Item i in SCTItemDictionary.Item)
         {
             itemDictionary.Add(i.ItemData.ItemID, i.ItemData);
-            Debug.Log(i.name + "" + i.ItemData);
         }
     }
 }

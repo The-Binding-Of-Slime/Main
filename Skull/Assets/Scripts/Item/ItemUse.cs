@@ -6,12 +6,14 @@ using System;
 public class ItemUse : MonoBehaviour
 {
     ItemDB itemDB;
-    //PlayerStatManger manager;
+    PlayerStatManager manager;
+    GoldManager goldManager;
 
     private void Start()
     {
         itemDB = FindObjectOfType<ItemDB>();
-        //manager = GetComponent<PlayerStatManger>();
+        manager = GetComponent<PlayerStatManager>();
+        goldManager = GetComponent<GoldManager>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -21,11 +23,13 @@ public class ItemUse : MonoBehaviour
 
             ItemData itemData = itemDB.itemDictionary[collision.gameObject.GetComponent<ItemName>().itemName];
 
-            //manager.StatUp(Stat.hp, itemData.hp);
-            //manager.StatUp(Stat.damage, itemData.damage);
-            //manager.StatUp(Stat.moveSpeed, itemData.moveSpeed);
-            //manager.StatUp(Stat.mana, itemData.mana);
-            //manager.StatUp(Stat.luck, itemData.luck);
+            manager.AddStat(PlayerStat.Hp, itemData.hp);
+            manager.AddStat(PlayerStat.Damage, itemData.damage);
+            manager.AddStat(PlayerStat.MoveSpeed, itemData.moveSpeed);
+            manager.AddStat(PlayerStat.AttackSpeed, itemData.mana);
+            manager.AddStat(PlayerStat.Luck, itemData.luck);
+
+            goldManager.Buy(itemData.gold);
 
             collision.gameObject.SetActive(false);
         }
