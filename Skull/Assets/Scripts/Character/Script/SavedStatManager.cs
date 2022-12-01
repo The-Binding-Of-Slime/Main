@@ -16,9 +16,10 @@ public class SavedStatManager : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerMoveSpeed", 0);
         PlayerPrefs.SetFloat("PlayerAttackSpeed", 0);
         PlayerPrefs.SetFloat("PlayerLuck", 0);
+        PlayerPrefs.SetFloat("PlayerMana", 0);
     }
 
-    public void AddStat(PlayerStat stat,float value)
+    public void AddStat(PlayerStat stat, float value)
     {
         switch (stat)
         {
@@ -37,6 +38,9 @@ public class SavedStatManager : MonoBehaviour
             case PlayerStat.Luck:
                 PlayerPrefs.SetFloat("PlayerLuck", PlayerPrefs.GetFloat("PlayerLuck") + value);
                 break;
+            case PlayerStat.Mana:
+                PlayerPrefs.SetFloat("PlayerMana", PlayerPrefs.GetFloat("PlayerMana") + value);
+                break;
         }
     }
 
@@ -54,6 +58,8 @@ public class SavedStatManager : MonoBehaviour
                 return PlayerPrefs.GetFloat("PlayerMoveSpeed");
             case PlayerStat.Luck:
                 return PlayerPrefs.GetFloat("PlayerLuck");
+            case PlayerStat.Mana:
+                return PlayerPrefs.GetFloat("PlayerMana");
             default:
                 return -1f;
         }

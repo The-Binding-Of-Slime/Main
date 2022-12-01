@@ -62,7 +62,8 @@ public class Controller : MonoBehaviour
 
     protected virtual void Jump()
     {
-        if (mover != null)
+        bool isGround = Physics2D.Raycast(transform.position + Vector3.down * 1.3f, Vector2.down, 0.1f).collider != null;
+        if (mover != null && isGround)
         {
             mover.Jump();
         }

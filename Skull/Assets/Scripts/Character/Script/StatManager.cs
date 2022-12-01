@@ -64,6 +64,9 @@ public class StatManager : MonoBehaviour
             case PlayerStat.Luck:
                 value = 1;
                 break;
+            case PlayerStat.Mana:
+                value = CharacterData.MaxMana;
+                break;
         }
         return value;
     }

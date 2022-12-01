@@ -43,6 +43,9 @@ public class PlayerStatManager : StatManager
             case PlayerStat.Luck:
                 value = 1;
                 break;
+            case PlayerStat.Mana:
+                value = CharacterData.MaxMana;
+                break;
         }
         return (value + savedStatManager.GetStat(stat)) * playerStat[(int)stat];
     }
