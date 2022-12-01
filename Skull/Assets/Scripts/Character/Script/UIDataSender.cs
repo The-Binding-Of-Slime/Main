@@ -8,6 +8,7 @@ public class UIDataSender : MonoBehaviour
     StatManager statManager;
     Victim victim;
     Attacker attacker;
+    GoldManager goldManager;
 
     void Start()
     {
@@ -15,12 +16,14 @@ public class UIDataSender : MonoBehaviour
         statManager = GetComponent<StatManager>();
         victim = GetComponent<Victim>();
         attacker = GetComponent<Attacker>();
+        goldManager = GetComponent<GoldManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         ui.hpUiSet(victim.HP, statManager.GetStat(PlayerStat.Hp));
-        ui.mpUiSet(attacker.Mana, statManager.CharacterData.MaxMana);
+        ui.mpUiSet(attacker.Mana, statManager.GetStat(PlayerStat.Mana));
+        ui.goldUiSet(goldManager.Gold);
     }
 }

@@ -8,5 +8,6 @@ public enum PlayerStat
     Damage,
     MoveSpeed,
     AttackSpeed,
-    Luck
+    Luck,
+    Mana
 }

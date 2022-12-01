@@ -24,7 +24,7 @@ public class Attacker : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        Mana = Mathf.Min(Mana + Time.deltaTime, statManager.CharacterData.MaxMana);
+        Mana = Mathf.Min(Mana + Time.deltaTime, statManager.GetStat(PlayerStat.Mana));
         for (int i = 0; i < coolTime.Length; i++)
         {
             coolTime[i] -= Time.deltaTime;
