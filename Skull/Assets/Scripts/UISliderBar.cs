@@ -26,7 +26,14 @@ public class UISliderBar : MonoBehaviour
     {
         if (mode != 0)
         {
-            showValue = Mathf.Lerp(showValue, targetValue, Time.deltaTime * 10);
+            if(Mathf.Abs(showValue - targetValue) > 1)
+            {
+                showValue = Mathf.Lerp(showValue, targetValue, Time.deltaTime * 10);
+            }
+            else
+            {
+                showValue = targetValue;
+            }
             if(mode == 1)
             {
                 if (text != null)

@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class SavedStatManager : MonoBehaviour
 {
+    public int ManaStone
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("PlayerManaStone");
+        }
+    }
+
     private void Start()
     {
         //ClearStat();
@@ -62,6 +70,27 @@ public class SavedStatManager : MonoBehaviour
                 return PlayerPrefs.GetFloat("PlayerMana");
             default:
                 return -1f;
+        }
+    }
+
+    public void AddManaStone(int manaStone)
+    {
+        if (manaStone > 0)
+        {
+            PlayerPrefs.SetInt("PlayerManaStone", PlayerPrefs.GetInt("PlayerManaStone") + manaStone);
+        }
+    }
+
+    public bool Buy(int price)
+    {
+        if(ManaStone < price)
+        {
+            return false;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("PlayerManaStone",PlayerPrefs.GetInt("PlayerManaStone")-price);
+            return true;
         }
     }
 }
