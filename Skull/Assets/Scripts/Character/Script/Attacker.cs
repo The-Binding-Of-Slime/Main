@@ -11,12 +11,10 @@ public class Attacker : MonoBehaviour
     AttackData[] attackDatas;
     public float Mana { get; private set; }
     float[] coolTime;
-    Animator animator;
 
     void Start()
     {
         statManager = GetComponent<StatManager>();
-        animator = GetComponent<Animator>();
         attackDatas = statManager.CharacterData.AttackData;
         coolTime = new float[attackDatas.Length];
     }
@@ -49,7 +47,14 @@ public class Attacker : MonoBehaviour
     {
         yield return new WaitForSeconds(attackDatas[index].SpawnDelayTime);
         GameObject prefab = Instantiate(attackDatas[index].AttackFrefab, transform.position, transform.rotation);
-        prefab.GetComponent<HitBox>().damage = attackDatas[index].Damage * statManager.GetStat(PlayerStat.Damage);
+        if (!statManager.GetBuff(Buff.DamageUp))
+        {
+            prefab.GetComponent<HitBox>().damage = attackDatas[index].Damage * statManager.GetStat(PlayerStat.Damage);
+        }
+        else
+        {
+            prefab.GetComponent<HitBox>().damage = attackDatas[index].Damage * statManager.GetStat(PlayerStat.Damage) * 1.5f;
+        }
         prefab.tag = transform.tag;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public enum Buff
 {
     DamageUp,
-    Slow,
-    Stun,
-    Barrier
+    SpeedUp,
+    Defence,
+    Stun
 }
