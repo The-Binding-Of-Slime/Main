@@ -7,5 +7,6 @@ public enum Buff
     DamageUp,
     SpeedUp,
     Defence,
-    Stun
+    Stun,
+    Immune
 }

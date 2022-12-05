@@ -37,6 +37,13 @@ public class PlayerControl : Controller
                 statManager.AddBuff(Buff.SpeedUp, 0.25f);
                 statManager.AddBuff(Buff.DamageUp, 0.25f);
             }
+            if (inputSys.GetSkill2Down)
+            {
+                animator.SetTrigger("useSleep");
+                statManager.AddBuff(Buff.Stun, 0.25f);
+                statManager.AddBuff(Buff.Immune, 0.25f);
+                statManager.AddBuff(Buff.Defence, 5);
+            }
             if (attackTimer <= 0)
             {
                 UseAttack(0);

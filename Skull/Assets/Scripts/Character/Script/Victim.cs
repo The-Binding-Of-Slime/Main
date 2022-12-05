@@ -23,15 +23,18 @@ public class Victim : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (!statManager.GetBuff(Buff.Defence))
+        if (!statManager.GetBuff(Buff.Immune))
         {
-            hp -= damage;
+            if (!statManager.GetBuff(Buff.Defence))
+            {
+                hp -= damage;
+            }
+            else
+            {
+                hp -= damage * 0.5f;
+            }
         }
-        else
-        {
-            hp -= damage * 0.8f;
-        }
-            if (hp <= 0)
+        if (hp <= 0)
         {
             Destroy(gameObject);
         }
