@@ -47,7 +47,7 @@ public class PlayerControl : Controller
             if (attackTimer <= 0)
             {
                 UseAttack(0);
-                attackTimer = 0.1f;
+                attackTimer = statManager.CharacterData.AttackData[0].CoolTime;
             }
         }
     }

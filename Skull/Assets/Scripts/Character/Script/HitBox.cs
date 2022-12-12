@@ -5,20 +5,15 @@ using UnityEngine;
 
 public class HitBox : MonoBehaviour
 {
-    public float damage { private get; set; }
+    public float damage { protected get; set; }
 
-    void Start()
+    protected virtual void Start()
     {
-        StartCoroutine(Timer());
+        StartCoroutine(Timer(0.1f));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag(transform.tag) && collision.gameObject.GetComponent<Victim>() != null)
         {
@@ -26,9 +21,9 @@ public class HitBox : MonoBehaviour
         }
     }
 
-    IEnumerator Timer()
+    IEnumerator Timer(float timer)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(timer);
         Destroy(gameObject);
     }
 }
