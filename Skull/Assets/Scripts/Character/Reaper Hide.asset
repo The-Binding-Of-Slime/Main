@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1b6adaa438d66e428ab1438a0997c84, type: 3}
-  m_Name: Chain Attack
+  m_Name: Reaper Hide
   m_EditorClassIdentifier: 
-  attackFrefab: {fileID: 4535966168150267731, guid: ef09f0ce44ed48946a09957221929b58, type: 3}
+  attackFrefab: {fileID: 0}
   mana: 0
-  damage: 1
-  coolTime: 1
+  damage: 0
+  coolTime: 0
   spawnDelayTime: 0
   stunTime: 1

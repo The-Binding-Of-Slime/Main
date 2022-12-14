@@ -6,7 +6,19 @@ using UnityEngine;
 
 public class ReaperControl : TrackerControl
 {
-    bool isHide;
+    bool IsHide
+    {
+        get
+        {
+            return animator.GetBool("isClocking");
+        }
+        set
+        {
+            animator.SetBool("isClocking", value);
+            attacker.UseAttack(2);
+            Debug.Log("dd");
+        }
+    }
 
     protected override void Start()
     {
@@ -20,26 +32,30 @@ public class ReaperControl : TrackerControl
 
         if (IsFind)
         {
-            if (!isHide)
+            if (!IsHide)
             {
                 if(Distance < attackRange)
                 {
                     UseAttack(0);
                 }
-                else
+                else if(Distance < 5)
                 {
                     UseAttack(1);
+                }
+                else
+                {
+                    IsHide = true;
                 }
             }
             else
             {
                 if(Distance < attackRange)
                 {
-                    BackTracking();
+                    IsHide = false;
                 }
                 else
                 {
-                    
+                    Tracking();
                 }
             }
         }
@@ -47,7 +63,7 @@ public class ReaperControl : TrackerControl
 
     protected override void UseAttack(int index)
     {
-        if (isHide)
+        if (IsHide)
         {
             return;
         }

@@ -8,16 +8,16 @@ public class Controller : MonoBehaviour
     protected Attacker attacker;
     protected SpriteRenderer render;
     protected Animator animator;
-    bool isNeedFlip;
+    float originScaleX;
     bool isRunFrameCount;
 
     protected virtual void Start()
     {
         mover = GetComponent<Mover>();
         attacker = GetComponent<Attacker>();
-        render = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        isNeedFlip = render.flipX;
+        render = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+        originScaleX = transform.localScale.x;
     }
 
     protected virtual void Update()
@@ -37,11 +37,11 @@ public class Controller : MonoBehaviour
             mover.Move(direction);
             if (direction > 0)
             {
-                render.flipX = false != isNeedFlip;
+                transform.localScale = new Vector3(1 * originScaleX, transform.localScale.y, transform.localScale.z);
             }
             else
             {
-                render.flipX = true != isNeedFlip;
+                transform.localScale = new Vector3(-1 * originScaleX, transform.localScale.y, transform.localScale.z);
             }
         }
     }

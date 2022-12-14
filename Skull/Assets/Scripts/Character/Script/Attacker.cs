@@ -31,10 +31,15 @@ public class Attacker : MonoBehaviour
 
     public bool UseAttack(int index)
     {
+        if (statManager.GetBuff(Buff.Stun))
+        {
+            return false;
+        }
         if (coolTime[index] <= 0)
         {
             StartCoroutine(SpawnAttackFrefab(index));
             coolTime[index] = attackDatas[index].CoolTime;
+            statManager.AddBuff(Buff.Stun, attackDatas[index].StunTime);
             return true;
         }
         else
@@ -46,15 +51,18 @@ public class Attacker : MonoBehaviour
     IEnumerator SpawnAttackFrefab(int index)
     {
         yield return new WaitForSeconds(attackDatas[index].SpawnDelayTime);
-        GameObject prefab = Instantiate(attackDatas[index].AttackFrefab, transform.position, transform.rotation);
-        if (!statManager.GetBuff(Buff.DamageUp))
+        if (attackDatas[index].AttackFrefab != null)
         {
-            prefab.GetComponent<HitBox>().damage = attackDatas[index].Damage * statManager.GetStat(PlayerStat.Damage);
+            GameObject prefab = Instantiate(attackDatas[index].AttackFrefab, transform.position, transform.rotation);
+            if (!statManager.GetBuff(Buff.DamageUp))
+            {
+                prefab.GetComponent<HitBox>().damage = attackDatas[index].Damage * statManager.GetStat(PlayerStat.Damage);
+            }
+            else
+            {
+                prefab.GetComponent<HitBox>().damage = attackDatas[index].Damage * statManager.GetStat(PlayerStat.Damage) * 1.5f;
+            }
+            prefab.tag = transform.tag;
         }
-        else
-        {
-            prefab.GetComponent<HitBox>().damage = attackDatas[index].Damage * statManager.GetStat(PlayerStat.Damage) * 1.5f;
-        }
-        prefab.tag = transform.tag;
     }
 }

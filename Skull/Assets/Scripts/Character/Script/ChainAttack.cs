@@ -57,7 +57,6 @@ public class ChainAttack : HitBox
             return;
         }
 
-        Debug.Log(gameObjects[0]);
         //가장 가까운대상 탐지
         if (n > 1)
         {
@@ -81,7 +80,6 @@ public class ChainAttack : HitBox
 
     IEnumerator ChainStart(int chainCount,float delay)
     {
-        Debug.Log("-----------------------");
         for(int i = 0; i < chainCount; i++)
         {
             yield return new WaitForSeconds(delay);
