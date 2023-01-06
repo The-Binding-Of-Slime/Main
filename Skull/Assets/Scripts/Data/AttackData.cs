@@ -49,4 +49,18 @@ public class AttackData : ScriptableObject
     {
         get { return stunTime; }
     }
+
+    [SerializeField]
+    private float destroyTimer;
+    public float DestroyTimer
+    {
+        get { return destroyTimer; }
+    }
+
+    [SerializeField]
+    private float activeDelay;
+    public float ActiveDelay
+    {
+        get { return activeDelay; }
+    }
 }

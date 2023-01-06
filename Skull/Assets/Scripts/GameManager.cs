@@ -17,9 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("-암전효과")]
     public Image blackCanvas;
     [Header("-배경1")]
-    public GameObject outSideBackGround;
-    [Header("-배경2")]
-    public GameObject CaveBackGround;
+    public GameObject BackGround;
     public GameObject PauseMenu;
     [Header("-레벨별 필요EXP(누적X)")]
     public float[] MaxExp;
@@ -51,16 +49,7 @@ public class GameManager : MonoBehaviour
         if (maps.Length != 0)
         {
             maps[0].SetActive(true);
-            if (maps[0].name[1] == '1')
-            {
-                outSideBackGround.SetActive(true);
-                CaveBackGround.SetActive(false);
-            }
-            else
-            {
-                outSideBackGround.SetActive(false);
-                CaveBackGround.SetActive(true);
-            }
+            BackGround.SetActive(true);
         }
 
         player = FindObjectOfType<PlayerControl>().gameObject;
@@ -136,16 +125,6 @@ public class GameManager : MonoBehaviour
         maps[nowMap].SetActive(true);
         spawnPoint = GameObject.FindWithTag("Respawn").transform.position;
         player.transform.position = spawnPoint;
-        if (maps[nowMap].name[1] == '1')
-        {
-            outSideBackGround.SetActive(true);
-            CaveBackGround.SetActive(false);
-        }
-        else
-        {
-            outSideBackGround.SetActive(false);
-            CaveBackGround.SetActive(true);
-        }
 
         blackCanvasAlpha = 0f;
         isEnter = false;
@@ -187,5 +166,17 @@ public class GameManager : MonoBehaviour
     {
         level++;
 
+    }
+
+    public void RespawnRequest(GameObject gameObject)
+    {
+        StartCoroutine(Respawn(gameObject));
+    }
+
+    IEnumerator Respawn(GameObject gameObject)
+    {
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(true);
     }
 }
