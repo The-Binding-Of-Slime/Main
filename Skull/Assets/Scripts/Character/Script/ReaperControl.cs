@@ -16,7 +16,6 @@ public class ReaperControl : TrackerControl
         {
             animator.SetBool("isClocking", value);
             attacker.UseAttack(2);
-            Debug.Log("dd");
         }
     }
 
