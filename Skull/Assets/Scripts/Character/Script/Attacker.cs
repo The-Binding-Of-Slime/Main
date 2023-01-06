@@ -65,6 +65,8 @@ public class Attacker : MonoBehaviour
                 prefab.GetComponent<HitBox>().damage = attackDatas[index].Damage * statManager.GetStat(PlayerStat.Damage) * 1.5f;
             }
             prefab.transform.localScale = new Vector2(prefab.transform.localScale.x * (transform.localScale.x / originScaleX), prefab.transform.localScale.y);
+            prefab.GetComponent<HitBox>().destroyTimer = attackDatas[index].DestroyTimer;
+            prefab.GetComponent<HitBox>().activeDelay = attackDatas[index].ActiveDelay;
             prefab.tag = transform.tag;
         }
     }
