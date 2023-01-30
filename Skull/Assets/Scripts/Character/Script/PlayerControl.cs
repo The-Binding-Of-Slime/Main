@@ -49,11 +49,38 @@ public class PlayerControl : Controller
                 UseAttack(0);
                 attackTimer = statManager.CharacterData.AttackData[0].CoolTime;
             }
+
+            if (inputSys.GetInteractionDown)
+            {
+                InteractionCheck();
+            }
         }
     }
 
     protected override void UseAttack(int index)
     {
         attack.UseAttack(index);
+    }
+
+    void InteractionCheck()
+    {
+        Collider2D[] collisions = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 1), 0);
+        foreach (Collider2D collision in collisions)
+        {
+            if (collision.GetComponentInParent<Interaction>() != null)
+            {
+                Transform go = collision.transform;
+                while (go.GetComponentInParent<Interaction>() != null && go.GetComponent<Interaction>() == null)
+                {
+                    go = go.parent;
+                }
+                Interaction[] inters = go.GetComponents<Interaction>();
+                foreach (Interaction inter in inters)
+                {
+                    inter.Interaction();
+                }
+                //gameObject.SetActive(false);
+            }
+        }
     }
 }
